@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+/*
+
+*selecciona todos los elementos de la pagina y les aplica un borde de 1px de estilo punteado
+{
+    border:1px;
+    border-style:dotted;
+}
+*/
+
+body{
+    background: color #f3f4f6;
+    color:#2B2B2B;
+    font-family: 'Montserrat', sans-serif;  
+}
+
+header{
+    background-color:#123B7a;
+    color:white;
+    text-align:center;
+    padding: 30px; /*padding añade como espacio interno al elemento*/
+}
+
+header h1{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+
+}
+
+nav{
+    background-color:white;
+    text-align:center;
+}
+
+.container{
+    max-width: 760px;
+    padding: 20px;
+    margin:30px auto;
+}
+
+.container article{
+    background-color:rgba(240, 200, 200, 1);
+    padding: 20px;
+}
+
+footer{
+    background-color:#123B7a;
+    color:#F3F4F6;
+    text-align:center;
+    padding: 20px;
+}
