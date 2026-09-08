@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finanzas del Taller</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Librería para gráficas -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+
+<div class="layout">
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        TalleresT
+    </div>
+
+
+    <div class="user">
+        <div class="avatar">DA</div>
+
+        <div>
+            <b>DAStech Admin</b>
+            <small>Administrador</small>
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a>🚗 Recepción de vehículos</a>
+        <a>🔧 Taller en vivo</a>
+        <a>👥 Clientes</a>
+        <a>👨‍🔧 Empleados</a>
+        <a>🚙 Vehículos</a>
+
+        <a class="active">
+            📊 Finanzas del taller
+        </a>
+
+
+        <a>💰 Ventas</a>
+        <a>📄 Facturas</a>
+        <a>📦 Inventario</a>
+
+    </nav>
+
+
+</aside>
+
+
+
+<!-- CONTENIDO -->
+
+<main class="content">
+
+
+<header>
+
+    <div>
+        <h1>
+            📊 Finanzas del Taller
+        </h1>
+
+        <p>
+            Control sencillo de ingresos, gastos y ganancias
+        </p>
+
+    </div>
+
+
+    <div class="actions">
+
+        <button class="pdf">
+            📄 Exportar PDF
+        </button>
+
+        <button class="excel">
+            📊 Exportar Excel
+        </button>
+
+        <button class="new">
+            ＋ Nueva transacción
+        </button>
+
+
+    </div>
+
+
+</header>
+
+
+
+
+<!-- FILTROS -->
+
+<section class="filters">
+
+<select>
+<option>Este mes</option>
+<option>Esta semana</option>
+<option>Hoy</option>
+</select>
+
+
+<select>
+<option>Todos los clientes</option>
+<option>Clientes frecuentes</option>
+</select>
+
+
+<select>
+<option>Todos los empleados</option>
+<option>Kevin Antonio</option>
+<option>Juan Isaac</option>
+</select>
+
+
+<input 
+placeholder="Buscar transacción..."
+>
+
+</section>
+
+
+
+
+
+<!-- TARJETAS -->
+
+<section class="cards">
+
+
+<div class="card green">
+
+<h3>
+Ventas totales
+</h3>
+
+<h2>
+$2,384.50
+</h2>
+
+<span>
+↑ 12% vs mes anterior
+</span>
+
+</div>
+
+
+
+<div class="card red">
+
+<h3>
+Gastos
+</h3>
+
+<h2>
+$732.20
+</h2>
+
+<span>
+↑ 8%
+</span>
+
+
+</div>
+
+
+
+<div class="card purple">
+
+<h3>
+Utilidad neta
+</h3>
+
+<h2>
+$1,652.30
+</h2>
+
+<span>
+↑ 18%
+</span>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+<!-- INGRESOS -->
+
+<section class="summary">
+
+
+<div class="box">
+
+<h3>
+Ingresos por servicios
+</h3>
+
+<h2>
+$1,620
+</h2>
+
+<p>
+Reparaciones realizadas
+</p>
+
+</div>
+
+
+
+<div class="box">
+
+<h3>
+Ingresos por repuestos
+</h3>
+
+<h2>
+$596.50
+</h2>
+
+<p>
+Ventas de piezas
+</p>
+
+</div>
+
+
+
+<div class="box">
+
+<h3>
+Total general
+</h3>
+
+<h2>
+$2,384.50
+</h2>
+
+<p>
+Ingresos del período
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- GRAFICAS -->
+
+
+<section class="charts">
+
+
+<div class="chart-box">
+
+<h2>
+Ingresos vs Gastos
+</h2>
+
+
+<canvas id="barChart"></canvas>
+
+
+</div>
+
+
+
+<div class="chart-box">
+
+<h2>
+Distribución de ingresos
+</h2>
+
+
+<canvas id="pieChart"></canvas>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+<!-- TABLA -->
+
+
+<section class="table-container">
+
+
+<h2>
+Historial de transacciones recientes
+</h2>
+
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+Fecha
+</th>
+
+<th>
+Tipo
+</th>
+
+<th>
+Cliente
+</th>
+
+<th>
+Empleado
+</th>
+
+<th>
+Monto
+</th>
+
+<th>
+Estado
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody>
+
+
+<tr>
+
+<td>
+25/08/2026
+</td>
+
+<td>
+🔧 Servicio
+</td>
+
+<td>
+Diego Ramírez
+</td>
+
+<td>
+Kevin Antonio
+</td>
+
+<td>
+$131.10
+</td>
+
+<td class="paid">
+Pagado
+</td>
+
+
+</tr>
+
+
+
+
+<tr>
+
+<td>
+24/08/2026
+</td>
+
+<td>
+📦 Repuesto
+</td>
+
+<td>
+William
+</td>
+
+<td>
+Juan Isaac
+</td>
+
+<td>
+$85.50
+</td>
+
+<td class="paid">
+Pagado
+</td>
+
+
+</tr>
+
+
+
+
+<tr>
+
+<td>
+23/08/2026
+</td>
+
+<td>
+🔧 Servicio
+</td>
+
+<td>
+Gabriel
+</td>
+
+<td>
+Juan Isaac
+</td>
+
+<td>
+$45.00
+</td>
+
+<td class="paid">
+Pagado
+</td>
+
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+
+
+</section>
+
+
+
+
+
+
+</main>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+
+</body>
+</html>
