@@ -1,0 +1,83 @@
+
+body {
+
+    background-color: #07110b;
+    color: #d8f3dc;
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+}
+
+#inicio {
+    background-color: #102b18;
+    text-align: center;
+    padding: 40px;
+    border-bottom: 3px solid #39ff14;
+}
+
+.titulo {
+    color: #39ff14;
+    font-size: 60px;
+    letter-spacing: 8px;
+    text-shadow: 0px 0px 15px #39ff14;
+}
+
+.subtitulo {
+    color: #9ef01a;
+    font-size: 22px;
+}
+
+.historia,
+.personajes,
+.mensaje {
+    width: 80%;
+    margin: 40px auto;
+    background-color: #0d1f12;
+    padding: 25px;
+    border: 1px solid #39ff14;
+    box-shadow: 0px 0px 15px #143d1c;
+}
+
+.seccion {
+    color: #70e000;
+    text-align: center;
+    font-size: 30px;
+}
+
+
+.imagen-serie {
+    display: block;
+    width: 70%;
+    max-width: 600px;
+    margin: 20px auto;
+    border: 3px solid #39ff14;
+    box-shadow: 0px 0px 20px black;
+}
+
+p {
+    text-align: justify;
+    font-size: 17px;
+}
+
+
+#lista-personajes {
+    list-style-type: square;
+}
+
+#lista-personajes li {
+    margin: 15px;
+    color: #b7efc5;
+}
+
+#lista-personajes li:hover {
+    color: #39ff14;
+}
+
+footer {
+
+    background-color: #020602;
+    text-align: center;
+    padding: 20px;
+    color: #39ff14;
+    border-top: 2px solid #39ff14;
+}
