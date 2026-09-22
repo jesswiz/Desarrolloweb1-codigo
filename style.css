@@ -1,0 +1,535 @@
+:root {
+    --verde-oscuro: #263d32;
+    --verde: #526b57;
+    --verde-claro: #a5b39d;
+    --beige-claro: #faf7ef;
+    --beige: #eee6d7;
+    --cafe: #735743;
+    --naranja: #c87842;
+    --blanco: #ffffff;
+    --texto: #303630;
+    --borde: rgba(38, 61, 50, 0.18);
+    --sombra: 0 18px 45px rgba(38, 61, 50, 0.12);
+    --fuente-texto: "DM Sans", sans-serif;
+    --fuente-titulos: "Playfair Display", serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--beige-claro);
+    color: var(--texto);
+    font-family: var(--fuente-texto);
+    line-height: 1.7;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ENCABEZADO */
+
+.encabezado {
+    background:
+        radial-gradient(
+            circle at 90% 15%,
+            rgba(200, 120, 66, 0.2),
+            transparent 22rem
+        ),
+        linear-gradient(
+            135deg,
+            var(--beige-claro),
+            var(--beige)
+        );
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 0 7%;
+    position: relative;
+}
+
+.encabezado::before {
+    border: 1px solid rgba(82, 107, 87, 0.25);
+    border-radius: 50%;
+    content: "";
+    height: 25rem;
+    left: -13rem;
+    position: absolute;
+    top: 35%;
+    width: 25rem;
+}
+
+.navegacion {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    max-width: 1200px;
+    padding: 1.8rem 0;
+}
+
+.logo {
+    color: var(--verde-oscuro);
+    font-family: var(--fuente-titulos);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.navegacion ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.navegacion li a {
+    font-size: 0.92rem;
+    font-weight: 600;
+    position: relative;
+}
+
+.navegacion li a::after {
+    background-color: var(--naranja);
+    bottom: -0.35rem;
+    content: "";
+    height: 2px;
+    left: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    width: 100%;
+}
+
+.navegacion li a:hover::after {
+    transform: scaleX(1);
+}
+
+.encabezado-contenido {
+    align-items: center;
+    display: grid;
+    gap: 5rem;
+    grid-template-columns: 1.2fr 0.8fr;
+    margin: auto;
+    max-width: 1200px;
+    min-height: calc(100vh - 100px);
+    padding: 4rem 0 7rem;
+}
+
+.etiqueta {
+    color: var(--naranja);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.16rem;
+    text-transform: uppercase;
+}
+
+.encabezado h1 {
+    color: var(--verde-oscuro);
+    font-family: var(--fuente-titulos);
+    font-size: clamp(3rem, 6vw, 5.3rem);
+    line-height: 1.05;
+    margin: 1rem 0 1.5rem;
+}
+
+.encabezado h1 span {
+    color: var(--cafe);
+    display: block;
+    font-style: italic;
+}
+
+.encabezado-texto > p {
+    font-size: 1.08rem;
+    margin-bottom: 2rem;
+    max-width: 650px;
+}
+
+.boton-principal {
+    background-color: var(--verde-oscuro);
+    border: 2px solid var(--verde-oscuro);
+    border-radius: 50px;
+    color: var(--blanco);
+    display: inline-block;
+    font-weight: 700;
+    padding: 0.85rem 1.5rem;
+    transition: 0.3s ease;
+}
+
+.boton-principal:hover {
+    background-color: transparent;
+    color: var(--verde-oscuro);
+    transform: translateY(-3px);
+}
+
+/* TARJETA DECORATIVA */
+
+.tarjeta-codigo {
+    background-color: var(--verde-oscuro);
+    border-radius: 2rem;
+    box-shadow: var(--sombra);
+    color: var(--beige-claro);
+    justify-self: center;
+    max-width: 330px;
+    padding: 3.5rem;
+    transform: rotate(3deg);
+    transition: 0.3s ease;
+    width: 100%;
+}
+
+.tarjeta-codigo:hover {
+    transform: rotate(0deg) translateY(-6px);
+}
+
+.tarjeta-codigo > span {
+    color: var(--naranja);
+    font-family: monospace;
+}
+
+.tarjeta-codigo p {
+    font-family: var(--fuente-titulos);
+    font-size: 2rem;
+    line-height: 1.5;
+    margin: 1.5rem 0;
+}
+
+/* INTRODUCCIÓN */
+
+.introduccion,
+.guias {
+    margin: auto;
+    max-width: 1200px;
+    padding: 7rem 7%;
+}
+
+.introduccion {
+    align-items: end;
+    display: grid;
+    gap: 4rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+.titulo-seccion h2 {
+    color: var(--verde-oscuro);
+    font-family: var(--fuente-titulos);
+    font-size: clamp(2.3rem, 4vw, 3.5rem);
+    line-height: 1.15;
+    margin-top: 0.7rem;
+}
+
+.introduccion-texto {
+    font-size: 1.08rem;
+}
+
+/* GUÍAS */
+
+.guias {
+    padding-top: 2rem;
+}
+
+.guia {
+    background-color: var(--beige);
+    border: 1px solid var(--borde);
+    border-radius: 1.5rem;
+    box-shadow: var(--sombra);
+    margin-bottom: 3rem;
+    overflow: hidden;
+}
+
+.guia-destacada {
+    background-color: var(--blanco);
+}
+
+.guia-encabezado {
+    align-items: center;
+    border-bottom: 1px solid var(--borde);
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem 2.5rem;
+}
+
+.guia-numero {
+    color: var(--naranja);
+    font-family: var(--fuente-titulos);
+    font-size: 1.4rem;
+}
+
+.guia h2 {
+    color: var(--verde-oscuro);
+    font-family: var(--fuente-titulos);
+    font-size: 2.5rem;
+    line-height: 1.1;
+}
+
+.guia-descripcion {
+    font-size: 1.03rem;
+    max-width: 850px;
+    padding: 2.5rem 2.5rem 1rem;
+}
+
+.ejercicios {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1.5rem 2.5rem 2.5rem;
+}
+
+.ejercicio {
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--borde);
+    border-radius: 1rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: auto 1fr auto;
+    padding: 1.4rem;
+    transition: 0.3s ease;
+}
+
+.guia-destacada .ejercicio {
+    background-color: var(--beige-claro);
+}
+
+.ejercicio:hover {
+    border-color: var(--naranja);
+    box-shadow: 0 12px 28px rgba(38, 61, 50, 0.13);
+    transform: translateY(-4px);
+}
+
+.ejercicio > span {
+    color: var(--naranja);
+    font-family: var(--fuente-titulos);
+    font-size: 1rem;
+}
+
+.ejercicio h3 {
+    color: var(--verde-oscuro);
+    font-family: var(--fuente-titulos);
+    font-size: 1.35rem;
+    margin-bottom: 0.3rem;
+}
+
+.ejercicio p {
+    font-size: 0.87rem;
+    line-height: 1.5;
+}
+
+.ejercicio strong {
+    color: var(--naranja);
+    font-size: 1.5rem;
+}
+
+/* RETO IA COMPACTO */
+
+.reto-ia-compacto {
+    align-items: center;
+    background-color: var(--verde-oscuro);
+    border-radius: 1.5rem;
+    box-shadow: var(--sombra);
+    color: var(--beige-claro);
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 0.9fr 1.1fr;
+    margin-bottom: 3rem;
+    padding: 2.5rem;
+}
+
+.reto-ia-informacion {
+    align-items: flex-start;
+    display: grid;
+    gap: 1.2rem;
+    grid-template-columns: auto 1fr;
+}
+
+.reto-ia-informacion h2 {
+    color: var(--beige-claro);
+    font-family: var(--fuente-titulos);
+    font-size: 2.2rem;
+    line-height: 1.15;
+    margin: 0.3rem 0 0.8rem;
+}
+
+.reto-ia-informacion > div > p:last-child {
+    color: rgba(250, 247, 239, 0.78);
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.reto-ia-enlaces {
+    display: grid;
+    gap: 0.7rem;
+}
+
+.reto-enlace {
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 0.8rem;
+    display: grid;
+    gap: 0.9rem;
+    grid-template-columns: auto 1fr auto;
+    padding: 0.9rem 1rem;
+    transition: 0.3s ease;
+}
+
+.reto-enlace:hover {
+    background-color: var(--beige-claro);
+    border-color: var(--naranja);
+    color: var(--verde-oscuro);
+    transform: translateX(5px);
+}
+
+.reto-enlace > span {
+    color: var(--naranja);
+    font-family: var(--fuente-titulos);
+    font-size: 0.9rem;
+}
+
+.reto-enlace strong {
+    display: block;
+    font-family: var(--fuente-titulos);
+    font-size: 1.08rem;
+}
+
+.reto-enlace small {
+    color: rgba(250, 247, 239, 0.68);
+    display: block;
+    font-size: 0.75rem;
+}
+
+.reto-enlace:hover small {
+    color: var(--cafe);
+}
+
+.reto-enlace b {
+    color: var(--naranja);
+    font-size: 1.2rem;
+}
+/* FRASE */
+
+.frase {
+    background-color: var(--verde-oscuro);
+    color: var(--beige-claro);
+    padding: 7rem 7%;
+    text-align: center;
+}
+
+.frase blockquote {
+    font-family: var(--fuente-titulos);
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    font-style: italic;
+    line-height: 1.35;
+    margin: 1rem auto 0;
+    max-width: 950px;
+}
+
+/* PIE DE PÁGINA */
+
+footer {
+    align-items: center;
+    background-color: var(--beige);
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+    padding: 4rem 7% 2rem;
+}
+
+.informacion-estudiante {
+    text-align: right;
+}
+
+.informacion-estudiante strong,
+.informacion-estudiante span {
+    display: block;
+}
+
+.informacion-estudiante strong {
+    color: var(--verde-oscuro);
+}
+
+.informacion-estudiante span,
+footer > div:first-child p {
+    font-size: 0.9rem;
+}
+
+.derechos {
+    border-top: 1px solid var(--borde);
+    font-size: 0.82rem;
+    grid-column: 1 / -1;
+    padding-top: 1.5rem;
+}
+
+/* DISEÑO RESPONSIVE */
+
+@media (max-width: 850px) {
+    .encabezado-contenido,
+    .introduccion {
+        grid-template-columns: 1fr;
+    }
+
+    .encabezado-contenido {
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .encabezado-texto > p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .ejercicios {
+        grid-template-columns: 1fr;
+    }
+
+    .reto-ia-compacto {
+    grid-template-columns: 1fr;
+}
+}
+
+@media (max-width: 600px) {
+    .navegacion {
+        align-items: flex-start;
+    }
+
+    .navegacion ul {
+        align-items: flex-end;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .encabezado h1 {
+        font-size: 3.1rem;
+    }
+
+    .guia-encabezado,
+    .guia-descripcion,
+    .ejercicios {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    .guia-2-proyectos {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+    footer {
+        grid-template-columns: 1fr;
+    }
+
+    .informacion-estudiante {
+        text-align: left;
+    }
+
+    .reto-ia-compacto {
+    padding: 1.5rem;
+}
+
+.reto-ia-informacion {
+    grid-template-columns: 1fr;
+}
+}
