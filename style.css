@@ -533,3 +533,213 @@ footer > div:first-child p {
     grid-template-columns: 1fr;
 }
 }
+
+/* RETO IA GUÍA 2 */
+
+.reto-ia {
+    margin-top: 3rem;
+}
+
+.bloque__encabezado {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 2.5rem 3rem;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.bloque__numero {
+    color: var(--color-acento);
+    font-family: var(--fuente-titulos);
+    font-size: 1.4rem;
+}
+
+.bloque__encabezado h2 {
+    margin: 0.25rem 0 0;
+    color: var(--color-verde);
+    font-family: var(--fuente-titulos);
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.bloque__contenido {
+    padding: 3rem;
+}
+
+.bloque__descripcion {
+    max-width: 850px;
+    margin: 0 0 2.5rem;
+    line-height: 1.8;
+}
+
+.grupo__titulo {
+    margin: 2.5rem 0 1.25rem;
+    color: var(--color-verde);
+    font-family: var(--fuente-titulos);
+    font-size: 1.5rem;
+}
+
+.enlaces-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.tarjeta-enlace {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    min-height: 180px;
+    padding: 1.75rem;
+    color: var(--color-texto);
+    text-decoration: none;
+    background-color: var(--color-fondo-suave);
+    border: 1px solid var(--color-borde);
+    border-radius: 20px;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.tarjeta-enlace:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-acento);
+    box-shadow: 0 16px 30px rgba(45, 59, 48, 0.12);
+}
+
+.tarjeta-enlace--destacada {
+    border: 2px solid var(--color-verde);
+}
+
+.tarjeta-enlace__numero {
+    color: var(--color-acento);
+    font-weight: 700;
+}
+
+.tarjeta-enlace h4 {
+    margin: 0 0 0.7rem;
+    color: var(--color-verde);
+    font-family: var(--fuente-titulos);
+    font-size: 1.35rem;
+}
+
+.tarjeta-enlace p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.tarjeta-enlace__flecha {
+    position: absolute;
+    right: 1.5rem;
+    bottom: 1.25rem;
+    color: var(--color-acento);
+    font-size: 1.4rem;
+}
+
+.archivos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.archivo-enlace {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    color: var(--color-texto);
+    text-decoration: none;
+    background-color: var(--color-fondo-suave);
+    border: 1px solid var(--color-borde);
+    border-radius: 16px;
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.archivo-enlace:hover {
+    transform: translateY(-3px);
+    background-color: var(--color-beige);
+}
+
+.archivo-enlace__icono {
+    display: grid;
+    width: 45px;
+    height: 45px;
+    place-items: center;
+    flex-shrink: 0;
+    color: white;
+    background-color: var(--color-acento);
+    border-radius: 12px;
+    font-weight: 700;
+}
+
+.archivo-enlace strong,
+.archivo-enlace small {
+    display: block;
+}
+
+.archivo-enlace small {
+    margin-top: 0.3rem;
+    color: var(--color-texto-suave);
+}
+
+.video-reto {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 3rem;
+    padding: 2rem;
+    background-color: var(--color-fondo-suave);
+    border-radius: 20px;
+}
+
+.video-reto__texto h3 {
+    margin: 0.4rem 0 1rem;
+    color: var(--color-verde);
+    font-family: var(--fuente-titulos);
+    font-size: 1.7rem;
+}
+
+.video-reto__texto p {
+    line-height: 1.7;
+}
+
+.video-reto__contenedor {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.video-reto__contenedor iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+@media (max-width: 900px) {
+    .enlaces-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .video-reto {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .bloque__encabezado,
+    .bloque__contenido {
+        padding: 1.5rem;
+    }
+
+    .archivos-grid {
+        grid-template-columns: 1fr;
+    }
+}

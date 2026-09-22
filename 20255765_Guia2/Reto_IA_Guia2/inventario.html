@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventario · TalleresT</title>
+<meta name="description" content="Control de inventario de repuestos: existencias, valor y estado de stock del taller.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="sidebar-overlay" data-sidebar-overlay></div>
+
+<div class="app-shell">
+  <aside class="sidebar" data-sidebar aria-label="Navegación principal">
+    <div class="logo">
+      <span class="logo__mark">Talleres<span>T</span></span>
+    </div>
+
+    <p class="sidebar__section-label">Operación</p>
+    <nav aria-label="Secciones del sistema">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="index.html">
+          <span class="nav-link__icon" aria-hidden="true">🔧</span> Tu taller hoy
+        </a></li>
+        <li><a class="nav-link" href="finanzas.html">
+          <span class="nav-link__icon" aria-hidden="true">💰</span> Finanzas
+        </a></li>
+        <li><a class="nav-link" href="inventario.html" aria-current="page">
+          <span class="nav-link__icon" aria-hidden="true">📦</span> Inventario
+        </a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar__footer">
+      <div class="admin-card">
+        <div class="admin-card__avatar" aria-hidden="true">MR</div>
+        <div>
+          <p class="admin-card__name">Marta Reyes</p>
+          <p class="admin-card__role">Administradora</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-content">
+    <div class="content-wrap">
+
+      <header class="topbar">
+        <div class="topbar__eyebrow">
+          <button class="nav-toggle" type="button" data-nav-toggle aria-label="Abrir menú de navegación" aria-expanded="false">☰</button>
+          <div class="topbar__titles">
+            <h1 class="topbar__title">Inventario</h1>
+            <p class="topbar__subtitle">Repuestos, insumos y niveles de stock</p>
+          </div>
+        </div>
+        <div class="topbar__actions">
+          <div class="search-bar" role="search">
+            <span class="search-bar__icon" aria-hidden="true">🔍</span>
+            <input type="search" aria-label="Buscar por nombre o código de producto" placeholder="Buscar por nombre o código…">
+          </div>
+          <div class="profile-chip">
+            <span class="profile-chip__avatar" aria-hidden="true">MR</span>
+            <span class="profile-chip__name">Marta Reyes</span>
+          </div>
+        </div>
+      </header>
+
+      <section aria-label="Resumen de inventario">
+        <div class="stat-grid">
+          <article class="stat-card">
+            <div class="stat-card__icon stat-card__icon--violet" aria-hidden="true">📦</div>
+            <p class="stat-card__value">10</p>
+            <p class="stat-card__label">Total de productos</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-card__icon stat-card__icon--emerald" aria-hidden="true">✅</div>
+            <p class="stat-card__value">7</p>
+            <p class="stat-card__label">Productos disponibles</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-card__icon stat-card__icon--orange" aria-hidden="true">⚠️</div>
+            <p class="stat-card__value">2</p>
+            <p class="stat-card__label">Stock bajo</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-card__icon stat-card__icon--slate" aria-hidden="true">💵</div>
+            <p class="stat-card__value">$3,412.40</p>
+            <p class="stat-card__label">Valor del inventario</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" aria-label="Listado de repuestos">
+        <div class="panel__header">
+          <h2 class="panel__title">Repuestos e insumos</h2>
+          <button class="btn btn--primary btn--sm" type="button" data-notify="Abriendo formulario para agregar repuesto…">+ Agregar repuesto</button>
+        </div>
+
+        <div class="filter-bar" style="margin-bottom: 16px;">
+          <div class="search-bar" style="min-width: 260px;">
+            <span class="search-bar__icon" aria-hidden="true">🔍</span>
+            <input type="search" data-inventario-buscar aria-label="Filtrar productos por nombre o código" placeholder="Filtrar por nombre o código…">
+          </div>
+          <select class="select-filter" data-inventario-estado aria-label="Filtrar por estado de stock">
+            <option value="todos">Todos los estados</option>
+            <option value="disponible">Disponible</option>
+            <option value="bajo">Stock bajo</option>
+            <option value="agotado">Agotado</option>
+          </select>
+          <p class="panel__hint"><span data-inventario-contador>10</span> resultados</p>
+        </div>
+
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Código</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Reservado</th>
+                <th scope="col">Disponible</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-inventario-fila data-nombre="Aceite Mobil 10W40 full sintético" data-codigo="acmob10w40" data-estado="disponible">
+                <td>Aceite Mobil 10W40 full sintético</td>
+                <td>ACMOB10W40</td>
+                <td>Lubricantes</td>
+                <td>$16.75</td>
+                <td>42</td>
+                <td>6</td>
+                <td>36</td>
+                <td><span class="badge badge--disponible">Disponible</span></td>
+                <td class="cell-actions">
+                  <button class="icon-btn" type="button" aria-label="Editar Aceite Mobil 10W40 full sintético" data-notify="Editando Aceite Mobil 10W40 full sintético…">✎</button>
+                  <button class="icon-btn icon-btn--danger" type="button" aria-label="Eliminar Aceite Mobil 10W40 full sintético" data-notify="Aceite Mobil 10W40 full sintético eliminado del inventario">🗑</button>
+                </td>
+              </tr>
+              <tr data-inventario-fila data-nombre="Filtro de aceite GN125/Gixxer" data-codigo="fagn125" data-estado="disponible">
+                <td>Filtro de aceite GN125/Gixxer</td>
+                <td>FAGN125</td>
+                <td>Filtros</td>
+                <td>$8.00</td>
+                <td>45</td>
+                <td>3</td>
+                <td>42</td>
+                <td><span class="badge badge--disponible">Disponible</span></td>
+                <td class="cell-actions">
+                  <button class="icon-btn" type="button" aria-label="Editar Filtro de aceite GN125/Gixxer" data-notify="Editando Filtro de aceite GN125/Gixxer…">✎</button>
+                  <button class="icon-btn icon-btn--danger" type="button" aria-label="Eliminar Filtro de aceite GN125/Gixxer" data-notify="Filtro de aceite GN125/Gixxer eliminado del inventario">🗑</button>
+                </td>
+              </tr>
+              <tr data-inventario-fila data-nombre="Pastillas de freno delanteras" data-codigo="rc050060024" data-estado="bajo">
+                <td>Pastillas de freno delanteras</td>
+                <td>RC050060024</td>
+                <td>Frenos</td>
+                <td>$18.00</td>
+                <td>3</td>
+                <td>2</td>
+                <td class="text-low-stock">1</td>
+                <td><span class="badge badge--bajo">Stock bajo</span></td>
+                <td class="cell-actions">
+                  <button class="icon-btn" type="button" aria-label="Editar Pastillas de freno delanteras" data-notify="Editando Pastillas de freno delanteras…">✎</button>
+                  <button class="icon-btn icon-btn--danger" type="button" aria-label="Eliminar Pastillas de freno delanteras" data-notify="Pastillas de freno delanteras eliminado del inventario">🗑</button>
+                </td>
+              </tr>
+              <tr data-inventario-fila data-nombre="Disco de freno delantero" data-codigo="45251ksp861s" data-estado="disponible">
+                <td>Disco de freno delantero</td>
+                <td>45251KSP861S</td>
+                <td>Frenos</td>
+                <td>$42.00</td>
+                <td>8</td>
+                <td>1</td>
+                <td>7</td>
+                <td><span class="badge badge--disponible">Disponible</span></td>
+                <td class="cell-actions">
+                  <button class="icon-btn" type="button" aria-label="Editar Disco de freno delantero" data-notify="Editando Disco de freno delantero…">✎</button>
+                  <button class="icon-btn icon-btn--danger" type="button" aria-label="Eliminar Disco de freno delantero" data-notify="Disco de freno delantero eliminado del inventario">🗑</button>
+                </td>
+              </tr>
+              <tr data-inventario-fila data-nombre="Cadena 428H 136 eslabones" data-codigo="ca428h136" data-estado="disponible">
+                <td>Cadena 428H 136 eslabones</td>
+                <td>CA428H136</td>
+                <td>Transmisión</td>
+                <td>$22.00</td>
+                <td>15</td>
+                <td>2</td>
+                <td>13</td>
+                <td><span class="badge badge--disponible">Disponible</span></td>
+                <td class="cell-actions">
+                  <button class="icon-btn" type="button" aria-label="Editar Cadena 428H 136 eslabones" data-notify="Editando Cadena 428H 136 eslabones…">✎</button>
+                  <button class="icon-btn icon-btn--danger" type="button" aria-label="Eliminar Cadena 428H 136 eslabones" data-notify="Cadena 428H 136 eslabones eliminado del inventario">🗑</button>
+                </td>
+              </tr>
+              <tr data-inventario-fila data-nombre="Refrigerante Mobil 1 galón" data-codigo="refmobil1g" data-estado="disponible">
+                <td>Refrigerante Mobil 1 galón</td>
+                <td>REFMOBIL1G</td>
+                <td>Lubricantes</td>
+                <td>$11.00</td>
+                <td>20</td>
+                <td>0</td>
+                <td>20</td>
+                <td><span class="badge badge--disponible">Disponible</span></td>
+                <td class="cell-actions">
+                  <button class="icon-btn" type="button" aria-label="Editar Refrigerante Mobil 1 galón" data-notify="Editando Refrigerante Mobil 1 galón…">✎</button>
+                  <button class="icon-btn icon-btn--danger" type="button" aria-label="Eliminar Refrigerante Mobil 1 galón" data-notify="Refrigerante Mobil 1 galón eliminado del inventario">🗑</button>
+                </td>
+              </tr>
+              <tr data-inventario-fila data-nombre="Batería 12V 12Ah" data-codigo="bat12v12ah" data-estado="disponible">
+                <td>Batería 12V 12Ah</td>
+                <td>BAT12V12AH</td>
+                <td>Eléctrico</td>
+                <td>$65.00</td>
+                <td>6</td>
+                <td>1</td>
+                <td>5</td>
+                <td><span class="badge badge--disponible">Disponible</span></td>
+                <td class="cell-actions">
+                  <button class="icon-btn" type="button" aria-label="Editar Batería 12V 12Ah" data-notify="Editando Batería 12V 12Ah…">✎</button>
+                  <button class="icon-btn icon-btn--danger" type="button" aria-label="Eliminar Batería 12V 12Ah" data-notify="Batería 12V 12Ah eliminado del inventario">🗑</button>
+                </td>
+              </tr>
+              <tr data-inventario-fila data-nombre="Bujía NGK CR7HSA" data-codigo="bujngkcr7hsa" data-estado="agotado">
+                <td>Bujía NGK CR7HSA</td>
+                <td>BUJNGKCR7HSA</td>
+                <td>Eléctrico</td>
+                <td>$4.50</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td><span class="badge badge--agotado">Agotado</span></td>
+                <td class="cell-actions">
+                  <button class="icon-btn" type="button" aria-label="Editar Bujía NGK CR7HSA" data-notify="Editando Bujía NGK CR7HSA…">✎</button>
+                  <button class="icon-btn icon-btn--danger" type="button" aria-label="Eliminar Bujía NGK CR7HSA" data-notify="Bujía NGK CR7HSA eliminado del inventario">🗑</button>
+                </td>
+              </tr>
+              <tr data-inventario-fila data-nombre="Filtro de aire universal" data-codigo="faire-univ" data-estado="disponible">
+                <td>Filtro de aire universal</td>
+                <td>FAIRE-UNIV</td>
+                <td>Filtros</td>
+                <td>$7.25</td>
+                <td>18</td>
+                <td>2</td>
+                <td>16</td>
+                <td><span class="badge badge--disponible">Disponible</span></td>
+                <td class="cell-actions">
+                  <button class="icon-btn" type="button" aria-label="Editar Filtro de aire universal" data-notify="Editando Filtro de aire universal…">✎</button>
+                  <button class="icon-btn icon-btn--danger" type="button" aria-label="Eliminar Filtro de aire universal" data-notify="Filtro de aire universal eliminado del inventario">🗑</button>
+                </td>
+              </tr>
+              <tr data-inventario-fila data-nombre="Líquido de freno DOT 4" data-codigo="lfdot4-500" data-estado="bajo">
+                <td>Líquido de freno DOT 4</td>
+                <td>LFDOT4-500</td>
+                <td>Frenos</td>
+                <td>$6.00</td>
+                <td>4</td>
+                <td>2</td>
+                <td class="text-low-stock">2</td>
+                <td><span class="badge badge--bajo">Stock bajo</span></td>
+                <td class="cell-actions">
+                  <button class="icon-btn" type="button" aria-label="Editar Líquido de freno DOT 4" data-notify="Editando Líquido de freno DOT 4…">✎</button>
+                  <button class="icon-btn icon-btn--danger" type="button" aria-label="Eliminar Líquido de freno DOT 4" data-notify="Líquido de freno DOT 4 eliminado del inventario">🗑</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <p>© <span data-anio-actual>2026</span> TalleresT · Sistema de administración de talleres mecánicos, El Salvador.</p>
+      </footer>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast" data-toast role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

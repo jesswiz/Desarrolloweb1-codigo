@@ -1,0 +1,146 @@
+Quiero que construyas un sitio web estático de tres páginas para un sistema salvadoreño de administración de talleres mecánicos llamado “TalleresT”.
+
+Toma las imágenes adjuntas como referencia de contenido y estructura funcional. La imagen del dashboard moderno es el resultado generado anteriormente y debe servir como punto de partida visual, pero debes rediseñar las tres páginas de forma consistente con el archivo design.md adjunto.
+
+OBJETIVO
+
+Crear estas tres páginas:
+
+1. index.html: “Tu taller hoy”
+2. finanzas.html: “Finanzas del taller”
+3. inventario.html: “Inventario”
+
+Genera además:
+
+4. styles.css: estilos compartidos por las tres páginas.
+5. script.js: interacciones sencillas compartidas.
+
+Utiliza exclusivamente HTML5, CSS3 y JavaScript puro. No uses React, Bootstrap, Tailwind, frameworks, herramientas de compilación ni dependencias que requieran instalación. El sitio debe funcionar al abrir index.html y debe poder publicarse directamente mediante GitHub Pages.
+
+SISTEMA DE DISEÑO
+
+Aplica de manera estricta y consistente las reglas del archivo design.md adjunto: colores, tipografía, espaciado, bordes, radios, sombras, botones, tarjetas, jerarquía visual y componentes. Si alguna regla no está definida, utiliza una solución coherente con el mismo sistema.
+
+Las tres páginas deben sentirse como partes del mismo producto.
+
+IDENTIDAD DEL SITIO
+
+El sistema se llama “TalleresT”. Conserva una identidad profesional vinculada con talleres mecánicos. Usa textos en español, valores monetarios en dólares y datos realistas para un taller salvadoreño.
+
+ESTRUCTURA COMPARTIDA
+
+Las tres páginas deben incluir:
+
+- Barra lateral o encabezado de navegación, según lo recomendado por design.md.
+- Logotipo textual “TalleresT”.
+- Enlaces funcionales entre:
+  - Tu taller hoy → index.html
+  - Finanzas → finanzas.html
+  - Inventario → inventario.html
+- Indicación visual de la página activa.
+- Encabezado superior con título, buscador y perfil del administrador.
+- Diseño responsive para computadora, tableta y teléfono.
+- HTML semántico con header, nav, main, section, article y footer.
+- Etiquetas aria-label cuando sean necesarias.
+- Ningún enlace entre las tres páginas debe utilizar href="#".
+- No uses imágenes externas obligatorias. Puedes usar iconos sencillos mediante caracteres Unicode o SVG incorporado.
+
+PÁGINA 1: TU TALLER HOY
+
+Debe ser el panel principal del taller e incluir:
+
+- Título “Tu taller hoy”.
+- Saludo al administrador y fecha.
+- Cuatro tarjetas de resumen:
+  - Vehículos en taller: 8.
+  - En proceso: 2.
+  - En pausa: 4.
+  - En cola: 2.
+- Sección de órdenes de trabajo recientes.
+- Cada orden debe mostrar:
+  - Número de orden.
+  - Vehículo.
+  - Cliente.
+  - Mecánico.
+  - Estado.
+  - Días transcurridos.
+  - Barra de progreso.
+  - Botón “Ver detalles”.
+- Usa estados visuales como “En proceso”, “En pausa” y “Pendiente”.
+- Agrega una sección pequeña de actividad reciente.
+
+PÁGINA 2: FINANZAS DEL TALLER
+
+Debe incluir:
+
+- Título “Finanzas del taller”.
+- Selector visual del período.
+- Tres tarjetas:
+  - Ingresos: $2,384.50.
+  - Gastos: $732.20.
+  - Utilidad neta: $1,652.30.
+- Gráfico visual de ingresos contra gastos creado con HTML, CSS o SVG.
+- Gráfico de composición de ingresos creado con CSS o SVG.
+- Tabla de transacciones recientes con fecha, tipo, descripción, cliente, método de pago, monto y estado.
+- Botones “Registrar movimiento” y “Exportar reporte”.
+- Sección de acciones rápidas.
+- No es necesario que los datos se guarden realmente, pero los botones deben mostrar una respuesta visual coherente.
+
+PÁGINA 3: INVENTARIO
+
+Debe incluir:
+
+- Título “Inventario”.
+- Tarjetas de resumen:
+  - Total de productos.
+  - Productos disponibles.
+  - Stock bajo.
+  - Valor del inventario.
+- Buscador funcional en JavaScript que filtre las filas por nombre o código.
+- Filtro por estado.
+- Tabla con nombre, código, categoría, precio, cantidad, reservado, disponible y estado.
+- Datos realistas como aceite, filtros, pastillas de freno, discos y cadenas.
+- Destaca con color los productos con stock bajo o agotado.
+- Botón “Agregar repuesto”.
+- Botones visuales de editar y eliminar, sin necesidad de base de datos.
+
+ANIMACIONES Y TRANSICIONES
+
+Incluye obligatoriamente:
+
+- Aparición suave de tarjetas al cargar la página.
+- Elevación y sombra al pasar el cursor sobre una tarjeta.
+- Transiciones de color en botones y enlaces.
+- Animación de las barras de progreso.
+- Respeta prefers-reduced-motion.
+
+Declara al inicio de styles.css esta variable:
+
+--duracion-animacion: 0.6s;
+
+Utiliza esa variable en la animación principal. Esto debe permitir demostrar en un video el cambio de 0.6s a 2s y explicar cómo aumenta la duración de la animación.
+
+JAVASCRIPT
+
+Utiliza JavaScript únicamente para:
+
+- Abrir y cerrar la navegación en pantallas pequeñas.
+- Filtrar los productos del inventario.
+- Mostrar notificaciones breves al pulsar botones.
+- Actualizar automáticamente el año del footer.
+
+No agregues funciones complejas ni conexiones a servidores.
+
+FORMATO DE RESPUESTA
+
+Entrega el código completo de los cinco archivos, en este orden:
+
+1. index.html
+2. finanzas.html
+3. inventario.html
+4. styles.css
+5. script.js
+
+Coloca cada archivo dentro de un bloque de código separado y escribe claramente su nombre antes del bloque.
+
+No abrevies código, no uses “continúa aquí”, no omitas filas ni componentes y no expliques el proceso antes del código. Verifica que los nombres de archivos, enlaces, clases y referencias entre HTML, CSS y JavaScript coincidan exactamente.

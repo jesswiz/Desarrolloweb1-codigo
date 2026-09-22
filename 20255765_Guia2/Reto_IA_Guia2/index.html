@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu taller hoy · TalleresT</title>
+<meta name="description" content="Panel principal de TalleresT: vehículos en taller, órdenes de trabajo en curso y actividad reciente.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="sidebar-overlay" data-sidebar-overlay></div>
+
+<div class="app-shell">
+  <aside class="sidebar" data-sidebar aria-label="Navegación principal">
+    <div class="logo">
+      <span class="logo__mark">Talleres<span>T</span></span>
+    </div>
+
+    <p class="sidebar__section-label">Operación</p>
+    <nav aria-label="Secciones del sistema">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="index.html" aria-current="page">
+          <span class="nav-link__icon" aria-hidden="true">🔧</span> Tu taller hoy
+        </a></li>
+        <li><a class="nav-link" href="finanzas.html">
+          <span class="nav-link__icon" aria-hidden="true">💰</span> Finanzas
+        </a></li>
+        <li><a class="nav-link" href="inventario.html">
+          <span class="nav-link__icon" aria-hidden="true">📦</span> Inventario
+        </a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar__footer">
+      <div class="admin-card">
+        <div class="admin-card__avatar" aria-hidden="true">MR</div>
+        <div>
+          <p class="admin-card__name">Marta Reyes</p>
+          <p class="admin-card__role">Administradora</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-content">
+    <div class="content-wrap">
+
+      <header class="topbar">
+        <div class="topbar__eyebrow">
+          <button class="nav-toggle" type="button" data-nav-toggle aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="menu-lateral">☰</button>
+          <div class="topbar__titles">
+            <h1 class="topbar__title">Tu taller hoy</h1>
+            <p class="topbar__subtitle">Lunes, 21 de septiembre de 2026</p>
+          </div>
+        </div>
+        <div class="topbar__actions">
+          <div class="search-bar" role="search">
+            <span class="search-bar__icon" aria-hidden="true">🔍</span>
+            <input type="search" aria-label="Buscar por placa, cliente o número de orden" placeholder="Buscar por placa, cliente…">
+          </div>
+          <div class="profile-chip">
+            <span class="profile-chip__avatar" aria-hidden="true">MR</span>
+            <span class="profile-chip__name">Marta Reyes</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="greeting-panel" aria-label="Saludo">
+        <div>
+          <p class="greeting-panel__title">Hola, Marta 👋</p>
+          <p class="greeting-panel__subtitle">Hoy tienes 8 vehículos en el taller y 2 órdenes en cola por asignar.</p>
+        </div>
+        <button class="btn btn--primary" type="button" data-notify="Abriendo recepción de vehículos…">+ Nueva orden</button>
+      </section>
+
+      <section aria-label="Resumen del día">
+        <div class="stat-grid">
+          <article class="stat-card">
+            <div class="stat-card__icon stat-card__icon--violet" aria-hidden="true">🚗</div>
+            <p class="stat-card__value">8</p>
+            <p class="stat-card__label">Vehículos en taller</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-card__icon stat-card__icon--emerald" aria-hidden="true">⚙️</div>
+            <p class="stat-card__value">2</p>
+            <p class="stat-card__label">En proceso</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-card__icon stat-card__icon--orange" aria-hidden="true">⏸️</div>
+            <p class="stat-card__value">4</p>
+            <p class="stat-card__label">En pausa</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-card__icon stat-card__icon--slate" aria-hidden="true">🕐</div>
+            <p class="stat-card__value">2</p>
+            <p class="stat-card__label">En cola</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-grid" aria-label="Órdenes de trabajo y actividad">
+        <article class="panel">
+          <div class="panel__header">
+            <h2 class="panel__title">Órdenes de trabajo recientes</h2>
+            <p class="panel__hint">6 órdenes activas</p>
+          </div>
+
+          <div class="order-list">
+
+            <article class="order-card">
+              <div class="order-card__top">
+                <div>
+                  <p class="order-card__id">Orden #TT-1042</p>
+                  <p class="order-card__vehicle">Toyota Corolla 2019 · P348-921</p>
+                </div>
+                <span class="badge badge--proceso">En proceso</span>
+              </div>
+              <div class="order-card__meta">
+                <span>Cliente: <strong>José Alas</strong></span>
+                <span>Mecánico: <strong>Kevin Antonio</strong></span>
+                <span>Días transcurridos: <strong>1</strong></span>
+              </div>
+              <div class="order-card__bottom">
+                <div class="progress-track"><div class="progress-fill" data-progress="65"></div></div>
+                <button class="btn btn--ghost btn--sm" type="button" data-notify="Abriendo detalles de la orden #TT-1042…">Ver detalles</button>
+              </div>
+            </article>
+
+            <article class="order-card">
+              <div class="order-card__top">
+                <div>
+                  <p class="order-card__id">Orden #TT-1041</p>
+                  <p class="order-card__vehicle">Nissan Sentra 2021 · P112-455</p>
+                </div>
+                <span class="badge badge--proceso">En proceso</span>
+              </div>
+              <div class="order-card__meta">
+                <span>Cliente: <strong>Wiliam Portillo</strong></span>
+                <span>Mecánico: <strong>Juan Isaac</strong></span>
+                <span>Días transcurridos: <strong>2</strong></span>
+              </div>
+              <div class="order-card__bottom">
+                <div class="progress-track"><div class="progress-fill" data-progress="40"></div></div>
+                <button class="btn btn--ghost btn--sm" type="button" data-notify="Abriendo detalles de la orden #TT-1041…">Ver detalles</button>
+              </div>
+            </article>
+
+            <article class="order-card">
+              <div class="order-card__top">
+                <div>
+                  <p class="order-card__id">Orden #TT-1039</p>
+                  <p class="order-card__vehicle">Hyundai Tucson 2018 · P205-330</p>
+                </div>
+                <span class="badge badge--pausa">En pausa</span>
+              </div>
+              <div class="order-card__meta">
+                <span>Cliente: <strong>Gabriel Menjívar</strong></span>
+                <span>Mecánico: <strong>Melbin Estanley</strong></span>
+                <span>Días transcurridos: <strong>3</strong></span>
+              </div>
+              <div class="order-card__bottom">
+                <div class="progress-track"><div class="progress-fill progress-fill--warning" data-progress="30"></div></div>
+                <button class="btn btn--ghost btn--sm" type="button" data-notify="Abriendo detalles de la orden #TT-1039…">Ver detalles</button>
+              </div>
+            </article>
+
+            <article class="order-card">
+              <div class="order-card__top">
+                <div>
+                  <p class="order-card__id">Orden #TT-1037</p>
+                  <p class="order-card__vehicle">Kia Rio 2020 · P409-118</p>
+                </div>
+                <span class="badge badge--pausa">En pausa</span>
+              </div>
+              <div class="order-card__meta">
+                <span>Cliente: <strong>María López</strong></span>
+                <span>Mecánico: <strong>Diego Alvarado</strong></span>
+                <span>Días transcurridos: <strong>4</strong></span>
+              </div>
+              <div class="order-card__bottom">
+                <div class="progress-track"><div class="progress-fill progress-fill--warning" data-progress="20"></div></div>
+                <button class="btn btn--ghost btn--sm" type="button" data-notify="Abriendo detalles de la orden #TT-1037…">Ver detalles</button>
+              </div>
+            </article>
+
+            <article class="order-card">
+              <div class="order-card__top">
+                <div>
+                  <p class="order-card__id">Orden #TT-1035</p>
+                  <p class="order-card__vehicle">Chevrolet Aveo 2017 · P330-882</p>
+                </div>
+                <span class="badge badge--pendiente">Pendiente</span>
+              </div>
+              <div class="order-card__meta">
+                <span>Cliente: <strong>Carlos Mendoza</strong></span>
+                <span>Mecánico: <strong>Sin asignar</strong></span>
+                <span>Días transcurridos: <strong>0</strong></span>
+              </div>
+              <div class="order-card__bottom">
+                <div class="progress-track"><div class="progress-fill progress-fill--muted" data-progress="0"></div></div>
+                <button class="btn btn--ghost btn--sm" type="button" data-notify="Abriendo detalles de la orden #TT-1035…">Ver detalles</button>
+              </div>
+            </article>
+
+            <article class="order-card">
+              <div class="order-card__top">
+                <div>
+                  <p class="order-card__id">Orden #TT-1034</p>
+                  <p class="order-card__vehicle">Mazda 3 2016 · P077-204</p>
+                </div>
+                <span class="badge badge--pendiente">Pendiente</span>
+              </div>
+              <div class="order-card__meta">
+                <span>Cliente: <strong>Joshua Ramírez</strong></span>
+                <span>Mecánico: <strong>Sin asignar</strong></span>
+                <span>Días transcurridos: <strong>0</strong></span>
+              </div>
+              <div class="order-card__bottom">
+                <div class="progress-track"><div class="progress-fill progress-fill--muted" data-progress="0"></div></div>
+                <button class="btn btn--ghost btn--sm" type="button" data-notify="Abriendo detalles de la orden #TT-1034…">Ver detalles</button>
+              </div>
+            </article>
+
+          </div>
+        </article>
+
+        <aside class="panel" aria-label="Actividad reciente">
+          <div class="panel__header">
+            <h2 class="panel__title">Actividad reciente</h2>
+          </div>
+          <ul class="activity-list">
+            <li class="activity-item">
+              <span class="activity-item__dot" aria-hidden="true"></span>
+              <p class="activity-item__text">Kevin Antonio actualizó el progreso de la orden #TT-1042.
+                <span class="activity-item__time">Hace 12 min</span>
+              </p>
+            </li>
+            <li class="activity-item">
+              <span class="activity-item__dot" aria-hidden="true"></span>
+              <p class="activity-item__text">Se registró la entrada del Hyundai Tucson 2018 (P205-330).
+                <span class="activity-item__time">Hace 48 min</span>
+              </p>
+            </li>
+            <li class="activity-item">
+              <span class="activity-item__dot" aria-hidden="true"></span>
+              <p class="activity-item__text">Se facturó la orden #TT-1030 por $85.50.
+                <span class="activity-item__time">Hoy, 9:10 a. m.</span>
+              </p>
+            </li>
+            <li class="activity-item">
+              <span class="activity-item__dot" aria-hidden="true"></span>
+              <p class="activity-item__text">Stock bajo detectado en pastillas de freno delanteras.
+                <span class="activity-item__time">Hoy, 8:45 a. m.</span>
+              </p>
+            </li>
+          </ul>
+        </aside>
+      </section>
+
+      <footer class="site-footer">
+        <p>© <span data-anio-actual>2026</span> TalleresT · Sistema de administración de talleres mecánicos, El Salvador.</p>
+      </footer>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast" data-toast role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
