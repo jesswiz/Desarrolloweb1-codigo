@@ -1,0 +1,1392 @@
+/* ==========================================================================
+   TALLEREST - TU TALLER HOY
+   Hoja de estilos principal (css/estilo.css)
+   Distribución arquitectónica mediante CSS GRID obligatoria
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. VARIABLES DE DISEÑO (:root)
+   Paleta moderna inspirada en la referencia estética:
+   Fondo claro, barra lateral oscura (#0f172a), acento morado (#7c3aed),
+   gradiente turquesa-morado y estados semánticos accesibles.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Colores Principales de Marca y Acento */
+  --color-primary: #7c3aed;         /* Morado acento principal */
+  --color-primary-hover: #6d28d9;   /* Morado oscuro para hover */
+  --color-primary-light: #f5f3ff;   /* Morado tenue para fondos y selecciones */
+  --color-primary-border: #ddd6fe;  /* Borde morado suave */
+  
+  /* Gradiente del Banner de Bienvenida (Turquesa a Morado) */
+  --gradient-welcome: linear-gradient(135deg, #0284c7 0%, #3b82f6 45%, #7c3aed 100%);
+  
+  /* Barra Lateral y Superficies Oscuras */
+  --color-sidebar-bg: #0f172a;       /* Azul pizarra muy oscuro */
+  --color-sidebar-surface: #1e293b;  /* Superficie secundaria en barra lateral */
+  --color-sidebar-text: #94a3b8;     /* Texto secundario claro */
+  --color-sidebar-text-active: #ffffff;
+  --color-sidebar-border: #1e293b;
+  
+  /* Superficies Principales (Área de Contenido) */
+  --color-bg-main: #f8fafc;          /* Gris muy claro de fondo */
+  --color-card-bg: #ffffff;          /* Tarjetas blancas */
+  --color-border: #e2e8f0;           /* Bordes finos y sutiles */
+  --color-border-subtle: #f1f5f9;
+  
+  /* Tipografía y Escala de Grises */
+  --color-text-title: #0f172a;       /* Titulares oscuros */
+  --color-text-body: #334155;        /* Texto principal */
+  --color-text-muted: #64748b;       /* Metadatos y textos secundarios */
+  --color-text-light: #94a3b8;
+  
+  /* Estados Semánticos de Órdenes de Trabajo */
+  --color-success-bg: #ecfdf5;       /* Finalizado / pendiente cierre */
+  --color-success-text: #047857;
+  --color-success-border: #a7f3d0;
+  
+  --color-warning-bg: #fffbeb;       /* Sin iniciar */
+  --color-warning-text: #b45309;
+  --color-warning-border: #fde68a;
+  
+  --color-danger-bg: #fef2f2;        /* En pausa / Alerta */
+  --color-danger-text: #b91c1c;
+  --color-danger-border: #fecaca;
+  
+  --color-info-bg: #eff6ff;          /* En proceso / Info */
+  --color-info-text: #1d4ed8;
+  --color-info-border: #bfdbfe;
+
+  /* Indicadores Específicos */
+  --color-kpi-cyan: #06b6d4;
+  --color-kpi-emerald: #10b981;
+  --color-kpi-rose: #f43f5e;
+  --color-kpi-amber: #f59e0b;
+  --color-kpi-dark: #334155;
+
+  /* Sombras y Radios */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-full: 9999px;
+  
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-card: 0 4px 12px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+  --shadow-lg: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
+  
+  /* Fuentes */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* --------------------------------------------------------------------------
+   2. REINICIO Y ESTILOS BASE
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-main);
+  color: var(--color-text-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input {
+  font-family: inherit;
+}
+
+/* Estados de Enfoque Accesible */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Números tabulares para datos y métricas */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+
+/* ==========================================================================
+   3. DISTRIBUCIÓN PRINCIPAL CON CSS GRID (OBLIGATORIO)
+   Estructura general de la aplicación dividida en dos regiones maestras:
+   - "sidebar": Columna lateral oscura de navegación fija.
+   - "main": Área principal con desplazamiento independiente.
+   ========================================================================== */
+.app-container {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  grid-template-areas: "sidebar main";
+  min-height: 100vh;
+  width: 100%;
+}
+
+
+/* ==========================================================================
+   4. BARRA LATERAL (SIDEBAR)
+   Contenedor estructurado en cuadrícula interna para cabecera, navegación
+   y perfil inferior del usuario.
+   ========================================================================== */
+.sidebar {
+  grid-area: sidebar;
+  background-color: var(--color-sidebar-bg);
+  color: var(--color-sidebar-text);
+  border-right: 1px solid var(--color-sidebar-border);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  z-index: 40;
+}
+
+/* Cabecera del Sidebar con Logotipo de TalleresT */
+.sidebar-header {
+  padding: 1.5rem 1.25rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.brand-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #ef4444 0%, #a855f7 60%, #3b82f6 100%);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(168, 85, 247, 0.35);
+}
+
+.brand-text {
+  font-style: italic;
+}
+
+.brand-text span {
+  color: #a855f7;
+}
+
+/* Navegación del Sidebar */
+.sidebar-nav {
+  padding: 1rem 0.75rem;
+  overflow-y: auto;
+}
+
+.nav-section-title {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  padding: 0.5rem 0.75rem 0.35rem;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: var(--radius-md);
+  color: var(--color-sidebar-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.15s ease-in-out;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.nav-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.nav-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Opción Activa (Fondo Morado + Texto Blanco según referencia estética) */
+.nav-link.active {
+  background-color: var(--color-primary);
+  color: var(--color-sidebar-text-active);
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
+}
+
+.nav-link.active .nav-icon {
+  opacity: 1;
+}
+
+/* Etiqueta "Nuevo" y Badges */
+.badge-nuevo {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-full);
+  background-color: #10b981;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge-counter {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--radius-full);
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+.nav-arrow {
+  width: 14px;
+  height: 14px;
+  opacity: 0.5;
+}
+
+/* Perfil de Usuario en el Sidebar Inferior */
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background-color: rgba(15, 23, 42, 0.6);
+}
+
+.user-profile-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-avatar-wrapper {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a855f7, #6366f1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+}
+
+.user-status-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #10b981;
+  border: 2px solid var(--color-sidebar-bg);
+  border-radius: 50%;
+}
+
+.user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.user-name {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-role-badge {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.user-quick-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.btn-icon-subtle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  color: #94a3b8;
+  transition: all 0.15s ease;
+}
+
+.btn-icon-subtle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+
+/* ==========================================================================
+   5. ÁREA PRINCIPAL CON CSS GRID (OBLIGATORIO)
+   El área de contenido organiza su flujo vertical completo con CSS Grid:
+   - "header": Barra superior con título de sección, pestañas y buscador.
+   - "welcome": Banner con degradado de turquesa a morado.
+   - "indicators": Fila de 5 tarjetas de estado del taller.
+   - "content-grid": Distribución a dos columnas (Órdenes de trabajo y Actividad).
+   ========================================================================== */
+.main-viewport {
+  grid-area: main;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  grid-template-areas:
+    "topbar"
+    "welcome-area"
+    "kpi-indicators"
+    "main-workspace";
+  gap: 1.5rem;
+  padding: 1.75rem 2rem 2.5rem;
+  max-width: 1560px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. ENCABEZADO SUPERIOR (topbar)
+   Organizado en Grid: título/subtítulo/pestañas a la izquierda y barra de
+   búsqueda por placa y controles a la derecha.
+   -------------------------------------------------------------------------- */
+.topbar {
+  grid-area: topbar;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.topbar-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.topbar-header-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.page-main-title {
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: var(--color-text-title);
+  letter-spacing: -0.025em;
+}
+
+.current-date {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+/* Pestañas de Vista («Tu taller en vivo v2» con punto morado y «Administrar») */
+.view-tabs-container {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: #e2e8f0;
+  padding: 0.25rem;
+  border-radius: var(--radius-lg);
+}
+
+.view-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-md);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  transition: all 0.15s ease;
+}
+
+.view-tab:hover {
+  color: var(--color-text-title);
+}
+
+.view-tab.active {
+  background-color: var(--color-card-bg);
+  color: var(--color-text-title);
+  box-shadow: var(--shadow-subtle);
+}
+
+.view-dot-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  display: inline-block;
+}
+
+/* Buscador por Placa y Acciones Superiores */
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.search-box-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.85rem;
+  width: 17px;
+  height: 17px;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.search-input {
+  width: 260px;
+  height: 40px;
+  padding: 0 1rem 0 2.4rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-card-bg);
+  font-size: 0.875rem;
+  color: var(--color-text-title);
+  box-shadow: var(--shadow-subtle);
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  width: 260px;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+}
+
+.search-input::placeholder {
+  color: var(--color-text-light);
+}
+
+.topbar-user-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem 0.35rem 0.35rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-subtle);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-title);
+}
+
+.avatar-mini {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a855f7, #6366f1);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. BLOQUE DE BIENVENIDA (welcome-area)
+   Inspirado en la referencia estética: degradado suave de turquesa a morado.
+   Contiene el saludo personalizado, resumen de situación y CTA de acción.
+   -------------------------------------------------------------------------- */
+.welcome-banner {
+  grid-area: welcome-area;
+  background: var(--gradient-welcome);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem 2.25rem;
+  color: #ffffff;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto sutil de brillo de fondo */
+.welcome-banner::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.welcome-content {
+  position: relative;
+  z-index: 2;
+}
+
+.welcome-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.welcome-subtitle {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 650px;
+  line-height: 1.5;
+}
+
+.welcome-actions {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-primary-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  color: var(--color-primary);
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.75rem 1.4rem;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  white-space: normal;
+}
+
+.btn-primary-white:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  background-color: #f8fafc;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. INDICADORES DEL TALLER (kpi-indicators) - CSS GRID OBLIGATORIO
+   Distribución en fila de 5 columnas para los indicadores originales:
+   1. 10 Vehículos en taller
+   2. 3 En proceso
+   3. 3 En pausa
+   4. 2 En tiempo extra
+   5. 2 En cola
+   -------------------------------------------------------------------------- */
+.kpi-indicators-grid {
+  grid-area: kpi-indicators;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.kpi-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.15rem;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.75rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: #cbd5e1;
+}
+
+/* Barra decorativa sutil en el borde superior de cada tarjeta */
+.kpi-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: transparent;
+}
+
+.kpi-card.cyan::before { background-color: var(--color-kpi-cyan); }
+.kpi-card.emerald::before { background-color: var(--color-kpi-emerald); }
+.kpi-card.rose::before { background-color: var(--color-kpi-rose); }
+.kpi-card.amber::before { background-color: var(--color-kpi-amber); }
+.kpi-card.slate::before { background-color: var(--color-kpi-dark); }
+
+.kpi-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kpi-icon-bubble {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.kpi-card.cyan .kpi-icon-bubble {
+  background-color: #ecfeff;
+  color: #0891b2;
+}
+
+.kpi-card.emerald .kpi-icon-bubble {
+  background-color: #ecfdf5;
+  color: #059669;
+}
+
+.kpi-card.rose .kpi-icon-bubble {
+  background-color: #fff1f2;
+  color: #e11d48;
+}
+
+.kpi-card.amber .kpi-icon-bubble {
+  background-color: #fffbeb;
+  color: #d97706;
+}
+
+.kpi-card.slate .kpi-icon-bubble {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+
+.kpi-value {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--color-text-title);
+  letter-spacing: -0.03em;
+}
+
+.kpi-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+
+/* ==========================================================================
+   9. SECCIÓN DE CONTENIDO PRINCIPAL (main-workspace) - CSS GRID OBLIGATORIO
+   Estructura en cuadrícula de 2 columnas inspirada en la referencia:
+   - Columna principal (2fr): Listado detallado de Órdenes de Trabajo.
+   - Columna lateral (1fr): Actividad reciente del taller y resumen del mes.
+   ========================================================================== */
+.main-workspace-grid {
+  grid-area: main-workspace;
+  display: grid;
+  grid-template-columns: minmax(0, 1.85fr) minmax(320px, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+
+/* --------------------------------------------------------------------------
+   10. COLUMNA DE ÓRDENES DE TRABAJO (work-orders-column)
+   -------------------------------------------------------------------------- */
+.work-orders-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.section-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25rem 0.25rem 0.5rem;
+}
+
+.section-heading-group {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.section-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-title);
+}
+
+.section-count-tag {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.work-orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Tarjeta individual de Orden de Trabajo */
+.order-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.order-card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: #cbd5e1;
+}
+
+/* Cabecera de la Orden con código, modelo y acciones rápidas */
+.order-header {
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #ffffff;
+}
+
+/* Colores de cabecera según el tipo y estado original */
+.order-card.status-completed .order-header {
+  background: linear-gradient(90deg, #047857 0%, #065f46 100%);
+}
+
+.order-card.status-pending .order-header {
+  background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%);
+}
+
+.order-card.status-paused .order-header {
+  background: linear-gradient(90deg, #dc2626 0%, #b91c1c 100%);
+}
+
+.order-id-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.order-badge-id {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  white-space: normal;
+}
+
+.order-vehicle-name {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  letter-spacing: -0.01em;
+}
+
+.order-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.btn-header-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transition: all 0.15s ease;
+}
+
+.btn-header-action:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.btn-header-action.play-action {
+  background: #10b981;
+}
+
+.btn-header-action.delete-action:hover {
+  background: rgba(239, 68, 68, 0.9);
+}
+
+/* Cuerpo de la Orden */
+.order-body {
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Banner de Estado dentro de la Orden */
+.order-status-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.95rem;
+  border-radius: var(--radius-md);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.status-completed .order-status-banner {
+  background-color: var(--color-success-bg);
+  color: var(--color-success-text);
+  border: 1px solid var(--color-success-border);
+}
+
+.status-pending .order-status-banner {
+  background-color: var(--color-warning-bg);
+  color: var(--color-warning-text);
+  border: 1px solid var(--color-warning-border);
+}
+
+.status-paused .order-status-banner {
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger-text);
+  border: 1px solid var(--color-danger-border);
+}
+
+.status-content-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.brand-emblem-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.6rem;
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-title);
+  box-shadow: var(--shadow-subtle);
+}
+
+.brand-emblem-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+
+/* Detalle especial para órdenes en pausa */
+.pause-reason-box {
+  background-color: #fff1f2;
+  border-left: 3px solid #f43f5e;
+  padding: 0.65rem 0.85rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.8125rem;
+  color: #9f1239;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1rem;
+}
+
+.pause-meta-title {
+  font-weight: 700;
+}
+
+.pause-meta-val {
+  font-weight: 500;
+}
+
+/* Fila de metadatos (Mecánico, Días, Entrega) */
+.order-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 1.25rem;
+  font-size: 0.8125rem;
+  color: var(--color-text-body);
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: normal;
+}
+
+.meta-icon {
+  width: 15px;
+  height: 15px;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.meta-highlight {
+  font-weight: 600;
+  color: var(--color-text-title);
+}
+
+.meta-action-wrapper {
+  justify-self: end;
+}
+
+.btn-details-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary-light);
+  border: 1px solid var(--color-primary-border);
+  transition: all 0.15s ease;
+}
+
+.btn-details-link:hover {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+/* Barra de Progreso y Porcentaje */
+.order-progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.progress-bar-track {
+  width: 100%;
+  height: 8px;
+  background-color: #f1f5f9;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+
+.fill-100 {
+  width: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    #06b6d4,
+    #06b6d4 10px,
+    #38bdf8 10px,
+    #38bdf8 20px
+  );
+}
+
+.fill-0 {
+  width: 0%;
+  background-color: #cbd5e1;
+}
+
+
+/* --------------------------------------------------------------------------
+   11. COLUMNA LATERAL COMPLEMENTARIA (sidebar-widget-column)
+   Contiene el resumen mensual y la actividad reciente del taller
+   -------------------------------------------------------------------------- */
+.sidebar-widget-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Tarjeta de Resumen Mensual (25 e ilimitadas disponibles) */
+.monthly-summary-card {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-card);
+}
+
+.monthly-summary-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text-title);
+  margin-bottom: 0.75rem;
+}
+
+.monthly-stats-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-large-num {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.stat-context {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.capacity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Tarjeta de Actividad Reciente del Taller */
+.recent-activity-card {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-card);
+}
+
+.recent-activity-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-title);
+  margin-bottom: 1rem;
+}
+
+.timeline-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  position: relative;
+}
+
+/* Línea conectora vertical */
+.timeline-list::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 5px;
+  width: 2px;
+  background-color: #e2e8f0;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 2px var(--color-primary);
+  background-color: var(--color-primary);
+}
+
+.timeline-dot.cyan {
+  box-shadow: 0 0 0 2px #06b6d4;
+  background-color: #06b6d4;
+}
+
+.timeline-dot.green {
+  box-shadow: 0 0 0 2px #10b981;
+  background-color: #10b981;
+}
+
+.timeline-dot.amber {
+  box-shadow: 0 0 0 2px #f59e0b;
+  background-color: #f59e0b;
+}
+
+.timeline-text {
+  color: var(--color-text-body);
+  margin-bottom: 0.2rem;
+}
+
+.timeline-text strong {
+  color: var(--color-text-title);
+}
+
+.timeline-time {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+/* Botón flotante accesible de búsqueda por placa */
+.floating-search-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #0f172a;
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  z-index: 50;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.floating-search-btn:hover {
+  background-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(124, 58, 237, 0.35);
+}
+
+
+/* ==========================================================================
+   12. DISEÑO ADAPTABLE Y MEDIA QUERIES
+   Ajuste progresivo de la cuadrícula CSS Grid para pantallas medianas y móviles:
+   - 1200px: Los indicadores pasan a distribución equilibrada.
+   - 1024px: Layout de 2 columnas de contenido pasa a 1 columna.
+   - 768px: Contenedor global pasa de 2 columnas (sidebar + main) a 1 columna
+            con sidebar superior/plegable y controles táctiles de 44px mínimo.
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .kpi-indicators-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .main-workspace-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .topbar {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .topbar-actions {
+    justify-content: space-between;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .search-input:focus {
+    width: 100%;
+  }
+
+  .kpi-indicators-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  /* Distribución vertical completa en dispositivos móviles */
+  .app-container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "sidebar"
+      "main";
+  }
+
+  .sidebar {
+    height: auto;
+    position: relative;
+    top: 0;
+    grid-template-rows: auto auto auto;
+  }
+
+  .sidebar-nav {
+    max-height: 280px;
+  }
+
+  .main-viewport {
+    padding: 1.25rem 1rem 3rem;
+    gap: 1.25rem;
+  }
+
+  .welcome-banner {
+    grid-template-columns: 1fr;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .kpi-indicators-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-meta-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .meta-action-wrapper {
+    justify-self: start;
+    margin-top: 0.5rem;
+  }
+}
+
+/* Correcciones de navegación, accesibilidad y adaptación. Grid sigue organizando toda la página. */
+.main-viewport, .topbar > *, .main-workspace-grid > *, .meta-item { min-width: 0; }
+.meta-item, .order-vehicle-name { overflow-wrap: anywhere; }
+.nav-link { width: 100%; text-align: left; font: inherit; }
+button:disabled { cursor: not-allowed; }
+.nav-link:disabled { opacity: 0.8; }
+.nav-link:disabled:hover { background: transparent; }
+.prototype-notice { font-size: 0.8125rem; color: var(--color-text-muted); max-width: 65ch; }
+.skip-link { position: absolute; top: -100px; left: 1rem; z-index: 100; padding: 0.75rem; background: white; color: var(--color-primary); }
+.skip-link:focus { top: 1rem; }
+summary:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+.order-details summary { cursor: pointer; }
+.order-details[open] summary { margin-bottom: 1rem; }
+.order-details .order-progress-section { margin-top: 1rem; }
+.order-header, .order-id-group, .order-status-banner, .section-header-bar, .section-heading-group, .topbar-actions { flex-wrap: wrap; }
+.search-box-wrapper { min-width: 0; }
+.search-input { max-width: 100%; scroll-margin-top: 2rem; }
+.main-viewport { padding-bottom: 6rem; }
+.nav-section-title { color: var(--color-sidebar-text); }
+.search-input::placeholder { color: var(--color-text-muted); }
+@media (min-width: 769px) and (max-width: 1400px) {
+  .topbar { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 768px) {
+  .order-meta-grid { grid-template-columns: minmax(0, 1fr); }
+  .main-viewport { padding-bottom: 6rem; }
+  .welcome-title { flex-wrap: wrap; }
+  .search-box-wrapper { flex: 1 1 220px; }
+  .btn-header-action, .btn-icon-subtle { width: 44px; height: 44px; }
+  .btn-details-link, .view-tab { min-height: 44px; }
+  .floating-search-btn { bottom: 1rem; right: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}

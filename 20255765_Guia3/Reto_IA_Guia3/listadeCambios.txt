@@ -1,0 +1,9 @@
+- Corregí la ruta del CSS a css/estilo.css.
+- Reparé los enlaces de inicio y del taller, agregando sus destinos dentro del HTML.
+- Deshabilité las opciones de secciones inexistentes, conservando sus nombres para evitar enlaces sin destino.
+- Convertí “Ver detalles” en desplegables funcionales con details y summary, sin JavaScript.
+- Conecté el enlace flotante de búsqueda con el campo del buscador.
+- Eliminé el JavaScript incrustado y los roles de pestañas que no tenían el comportamiento correspondiente.
+- Sustituí la actividad inventada por un resumen de las cuatro órdenes y eliminé el supuesto “Plan Taller Pro”.
+- Ajusté Grid y los textos para evitar desbordamientos, permitir que los nombres completos se lean y evitar que el buscador cambie de tamaño al enfocarlo.
+- Mejoré accesibilidad y adaptación móvil: enlace para saltar al contenido, nombres para las barras de progreso, controles táctiles más grandes, mejor contraste y respeto de la preferencia de movimiento reducido.

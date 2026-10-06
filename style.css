@@ -743,3 +743,48 @@ footer > div:first-child p {
         grid-template-columns: 1fr;
     }
 }
+/* NUEVO: GUÍA 3. Reutiliza los componentes existentes sin alterar otras guías. */
+.guia3-seccion {
+    max-width: 1200px;
+    margin: 3rem auto 0;
+    padding: 0 7% 4rem;
+    scroll-margin-top: 2rem;
+}
+.guia3-reto .guia3-video {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: center;
+    gap: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+.guia3-video h3 {
+    font-family: var(--fuente-titulos);
+    font-size: 1.7rem;
+    margin: 0.4rem 0 1rem;
+}
+.guia3-video-marco {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.guia3-video-marco iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.guia3-video-pendiente {
+    padding: 1.5rem;
+    text-align: center;
+}
+.guia3-seccion a:focus-visible {
+    outline: 3px solid var(--naranja);
+    outline-offset: 4px;
+}
+@media (max-width: 850px) {
+    .guia3-reto .guia3-video { grid-template-columns: 1fr; }
+}

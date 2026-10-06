@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TalleresT - Tu taller hoy | Gestión de Motocicletas y Repuestos</title>
+<meta content="Panel de administración y gestión para taller de reparación de motocicletas y venta de repuestos TalleresT." name="description"/>
+<meta content="TalleresT - Tu taller hoy" property="og:title"/>
+<meta content="Panel administrativo para consultar órdenes de trabajo, capacidad e indicadores de TalleresT." property="og:description"/>
+<meta content="website" property="og:type"/>
+<!-- Enlace a la hoja de estilos externa -->
+<link href="css/estilo.css" rel="stylesheet"/>
+</head>
+<body id="inicio"><a class="skip-link" href="#contenido-principal">Saltar al contenido</a>
+<!-- Contenedor General con CSS Grid (sidebar y main) -->
+<div class="app-container">
+<!-- ======================================================================
+         BARRA LATERAL DE NAVEGACIÓN (SIDEBAR)
+         ====================================================================== -->
+<aside aria-label="Navegación principal del sistema" class="sidebar">
+<!-- Logotipo de la marca TalleresT -->
+<div class="sidebar-header">
+<a class="brand-logo" href="#inicio" title="TalleresT - Inicio">
+<div aria-hidden="true" class="brand-icon-wrapper">
+<svg aria-hidden="true" fill="none" focusable="false" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="20">
+<path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+<path d="m14 10-4 4"></path>
+</svg>
+</div>
+<span class="brand-text">Talleres<span>T</span></span>
+</a>
+</div>
+<!-- Menú de opciones de navegación del sistema -->
+<nav aria-label="Secciones del sistema" class="sidebar-nav">
+<div class="nav-section-title">Operación</div>
+<ul class="nav-list">
+<!-- Recepción de vehículos -->
+<li>
+<button class="nav-link" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" class="nav-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+<rect height="4" rx="1" ry="1" width="8" x="8" y="2"></rect>
+<path d="M9 14h6"></path>
+<path d="M9 18h6"></path>
+<path d="M9 10h1"></path>
+</svg>
+<span class="nav-label">Recepción de vehículos</span>
+</button>
+</li>
+<!-- Tu taller en vivo (Opción Activa destacada con fondo morado) -->
+<li>
+<a aria-current="page" class="nav-link active" href="#taller-vivo">
+<svg aria-hidden="true" class="nav-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+</svg>
+<span class="nav-label">Tu taller en vivo</span>
+<span class="badge-nuevo">Nuevo</span>
+</a>
+</li>
+<!-- Clientes -->
+<li>
+<button class="nav-link" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" class="nav-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+<circle cx="9" cy="7" r="4"></circle>
+<path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+<path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+</svg>
+<span class="nav-label">Clientes</span>
+</button>
+</li>
+<!-- Empleados -->
+<li>
+<button class="nav-link" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" class="nav-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M20 21v-2a4 4 0 0 0-3-3.87"></path>
+<path d="M4 21v-2a4 4 0 0 1 3-3.87"></path>
+<circle cx="12" cy="7" r="4"></circle>
+</svg>
+<span class="nav-label">Empleados</span>
+</button>
+</li>
+<!-- Vehículos -->
+<li>
+<button class="nav-link" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" class="nav-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<!-- Icono de Motocicleta -->
+<circle cx="5.5" cy="17.5" r="3.5"></circle>
+<circle cx="18.5" cy="17.5" r="3.5"></circle>
+<path d="M15 6h-3l-2.5 5.5H5.5"></path>
+<path d="M9 17.5 12 11h4l2.5 6.5"></path>
+</svg>
+<span class="nav-label">Vehículos</span>
+</button>
+</li>
+<!-- Notificaciones con badge -->
+<li>
+<button class="nav-link" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" class="nav-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+<path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+</svg>
+<span class="nav-label">Notificaciones</span>
+<span class="badge-counter" title="999+ notificaciones">999+</span>
+<svg aria-hidden="true" class="nav-arrow" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<polyline points="9 18 15 12 9 6"></polyline>
+</svg>
+</button>
+</li>
+</ul>
+<div class="nav-section-title">Administración y Finanzas</div>
+<ul class="nav-list">
+<!-- Finanzas del taller -->
+<li>
+<button class="nav-link" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" class="nav-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<line x1="12" x2="12" y1="1" y2="23"></line>
+<path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+</svg>
+<span class="nav-label">Finanzas del taller</span>
+</button>
+</li>
+<!-- Ventas -->
+<li>
+<button class="nav-link" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" class="nav-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+<path d="M3 6h18"></path>
+<path d="M16 10a4 4 0 0 1-8 0"></path>
+</svg>
+<span class="nav-label">Ventas</span>
+</button>
+</li>
+<!-- Facturas -->
+<li>
+<button class="nav-link" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" class="nav-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+<polyline points="14 2 14 8 20 8"></polyline>
+<line x1="16" x2="8" y1="13" y2="13"></line>
+<line x1="16" x2="8" y1="17" y2="17"></line>
+<polyline points="10 9 9 9 8 9"></polyline>
+</svg>
+<span class="nav-label">Facturas</span>
+</button>
+</li>
+<!-- Inventario -->
+<li>
+<button class="nav-link" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" class="nav-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path>
+<path d="m3.3 7 8.7 5 8.7-5"></path>
+<path d="M12 22V12"></path>
+</svg>
+<span class="nav-label">Inventario</span>
+</button>
+</li>
+<!-- Historial -->
+<li>
+<button class="nav-link" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" class="nav-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+<path d="M3 3v5h5"></path>
+<path d="M12 7v5l4 2"></path>
+</svg>
+<span class="nav-label">Historial</span>
+<svg aria-hidden="true" class="nav-arrow" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<polyline points="9 18 15 12 9 6"></polyline>
+</svg>
+</button>
+</li>
+<!-- Marketplace -->
+<li>
+<button class="nav-link" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" class="nav-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+</svg>
+<span class="nav-label">Marketplace</span>
+</button>
+</li>
+</ul>
+</nav>
+<!-- Perfil del usuario en la parte inferior del sidebar -->
+<div class="sidebar-footer">
+<div class="user-profile-card">
+<div class="user-avatar-wrapper" title="Avatar de usuario">
+<span>DA</span>
+<span class="user-status-dot" title="En línea"></span>
+</div>
+<div class="user-info">
+<p class="user-name">DASTech Admin</p>
+<p class="user-role-badge">DASTech · Merliot</p>
+</div>
+<div class="user-quick-actions">
+<button aria-label="Permisos" class="btn-icon-subtle" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" fill="none" focusable="false" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16">
+<path d="m21 2-2 2m-6 6 2 2m-4-2 2-2m-8 8a5 5 0 1 1 7-7l8-8 2 2-8 8a5 5 0 0 1-7 7Z"></path>
+</svg>
+</button>
+<button aria-label="Cerrar sesión" class="btn-icon-subtle" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" fill="none" focusable="false" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16">
+<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+<polyline points="16 17 21 12 16 7"></polyline>
+<line x1="21" x2="9" y1="12" y2="12"></line>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</aside>
+<!-- ======================================================================
+         ÁREA PRINCIPAL DEL PANEL (MAIN VIEWPORT)
+         Organizada verticalmente mediante CSS Grid (topbar, welcome, kpis, workspace)
+         ====================================================================== -->
+<main class="main-viewport" id="contenido-principal" tabindex="-1">
+<!-- --------------------------------------------------------------------
+           1. ENCABEZADO SUPERIOR (topbar)
+           -------------------------------------------------------------------- -->
+<header class="topbar">
+<div class="topbar-titles">
+<div class="topbar-header-row">
+<h1 class="page-main-title">Tu taller hoy</h1>
+<!-- Pestañas de vista («Tu taller en vivo v2» con punto morado y «Administrar») -->
+<div class="view-tabs-container">
+<a class="view-tab active" href="#taller-vivo">
+<span aria-hidden="true" class="view-dot-indicator"></span>
+<span>Tu taller en vivo v2</span>
+</a>
+<button class="view-tab" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<span>Administrar</span>
+</button>
+</div>
+</div>
+<div class="topbar-actions">
+<div class="search-box-wrapper">
+<svg aria-hidden="true" class="search-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="11" cy="11" r="8"></circle>
+<line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+</svg>
+<input aria-describedby="aviso-prototipo" aria-label="Buscar por placa" class="search-input" id="buscar-placa" name="placa" placeholder="Buscar por placa (prototipo)" type="search"/>
+</div>
+<div class="topbar-user-badge">
+<span aria-hidden="true" class="avatar-mini">DA</span>
+<span>DASTech Admin</span>
+</div>
+</div>
+</header>
+<!-- --------------------------------------------------------------------
+           2. BLOQUE DE BIENVENIDA (welcome-area)
+           Degradado moderno turquesa a morado con métricas clave del taller
+           -------------------------------------------------------------------- -->
+<section aria-labelledby="welcome-heading" class="welcome-banner">
+<div class="welcome-content">
+<h2 class="welcome-title" id="welcome-heading">
+            ¡Hola, DASTech Admin! <span aria-hidden="true">👋</span>
+</h2>
+<p class="welcome-subtitle">
+            Hoy tienes <strong>10 vehículos en el taller</strong>, <strong>3 en proceso</strong> de reparación y <strong>2 órdenes en cola</strong> por asignar.
+          </p>
+</div>
+<div class="welcome-actions">
+<button class="btn-primary-white" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" fill="none" focusable="false" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="18">
+<line x1="12" x2="12" y1="5" y2="19"></line>
+<line x1="5" x2="19" y1="12" y2="12"></line>
+</svg>
+<span>+ Nueva orden</span>
+</button>
+</div>
+</section>
+<!-- --------------------------------------------------------------------
+           3. CINCO INDICADORES DEL TALLER (kpi-indicators) - CSS GRID
+           1. 10 Vehículos en taller (moto)
+           2. 3 En proceso (llave)
+           3. 3 En pausa (pausa)
+           4. 2 En tiempo extra (reloj tiempo extra)
+           5. 2 En cola (reloj cola)
+           -------------------------------------------------------------------- -->
+<section aria-label="Indicadores del estado del taller" class="kpi-indicators-grid">
+<!-- Indicador 1: 10 Vehículos en taller -->
+<article class="kpi-card cyan">
+<div class="kpi-card-top">
+<div aria-hidden="true" class="kpi-icon-bubble">
+<!-- Icono Motocicleta -->
+<svg aria-hidden="true" fill="none" focusable="false" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="22">
+<circle cx="5.5" cy="17.5" r="3.5"></circle>
+<circle cx="18.5" cy="17.5" r="3.5"></circle>
+<path d="M15 6h-3l-2.5 5.5H5.5"></path>
+<path d="M9 17.5 12 11h4l2.5 6.5"></path>
+</svg>
+</div>
+<span class="kpi-value tabular-nums">10</span>
+</div>
+<span class="kpi-label">Vehículos en taller</span>
+</article>
+<!-- Indicador 2: 3 En proceso -->
+<article class="kpi-card emerald">
+<div class="kpi-card-top">
+<div aria-hidden="true" class="kpi-icon-bubble">
+<!-- Icono Llave Inglesa -->
+<svg aria-hidden="true" fill="none" focusable="false" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="22">
+<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+</svg>
+</div>
+<span class="kpi-value tabular-nums">3</span>
+</div>
+<span class="kpi-label">En proceso</span>
+</article>
+<!-- Indicador 3: 3 En pausa -->
+<article class="kpi-card rose">
+<div class="kpi-card-top">
+<div aria-hidden="true" class="kpi-icon-bubble">
+<!-- Icono Pausa -->
+<svg aria-hidden="true" fill="none" focusable="false" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="22">
+<rect height="16" rx="1" width="4" x="6" y="4"></rect>
+<rect height="16" rx="1" width="4" x="14" y="4"></rect>
+</svg>
+</div>
+<span class="kpi-value tabular-nums">3</span>
+</div>
+<span class="kpi-label">En pausa</span>
+</article>
+<!-- Indicador 4: 2 En tiempo extra -->
+<article class="kpi-card amber">
+<div class="kpi-card-top">
+<div aria-hidden="true" class="kpi-icon-bubble">
+<!-- Icono Tiempo Extra / Reloj con retorno -->
+<svg aria-hidden="true" fill="none" focusable="false" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="22">
+<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+<path d="M3 3v5h5"></path>
+<polyline points="12 7 12 12 15 15"></polyline>
+</svg>
+</div>
+<span class="kpi-value tabular-nums">2</span>
+</div>
+<span class="kpi-label">En tiempo extra</span>
+</article>
+<!-- Indicador 5: 2 En cola -->
+<article class="kpi-card slate">
+<div class="kpi-card-top">
+<div aria-hidden="true" class="kpi-icon-bubble">
+<!-- Icono Reloj en Espera -->
+<svg aria-hidden="true" fill="none" focusable="false" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="22">
+<circle cx="12" cy="12" r="10"></circle>
+<polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+</div>
+<span class="kpi-value tabular-nums">2</span>
+</div>
+<span class="kpi-label">En cola</span>
+</article>
+</section>
+<!-- --------------------------------------------------------------------
+           4. DISTRIBUCIÓN PRINCIPAL DE TRABAJO (main-workspace) - CSS GRID
+           - Columna izquierda: Órdenes de trabajo activas (conservando datos originales)
+           - Columna derecha: Resumen del mes y Actividad reciente
+           -------------------------------------------------------------------- -->
+<div class="main-workspace-grid">
+<!-- ==================================================================
+             COLUMNA DE ÓRDENES DE TRABAJO
+             ================================================================== -->
+<section aria-labelledby="orders-list-heading" class="work-orders-column" id="taller-vivo">
+<div class="section-header-bar">
+<div class="section-heading-group">
+<h2 class="section-title" id="orders-list-heading">Órdenes de trabajo activas</h2>
+<span class="section-count-tag">4 órdenes mostradas</span>
+</div>
+</div>
+<div class="work-orders-list">
+<!-- ORDEN 1: BENELLI RKR 180 2020 -->
+<article aria-label="Orden de trabajo 41818" class="order-card status-completed">
+<header class="order-header">
+<div class="order-id-group">
+<span class="order-badge-id tabular-nums">(#41818)</span>
+<span class="order-vehicle-name">M495159 BENELLI RKR 180 2020</span>
+</div>
+<div class="order-header-actions">
+<button aria-label="Configurar orden #41818" class="btn-header-action" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" fill="none" focusable="false" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15">
+<circle cx="12" cy="12" r="3"></circle>
+<path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+</svg>
+</button>
+<button aria-label="Agregar elemento a orden #41818" class="btn-header-action" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" fill="none" focusable="false" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="15">
+<line x1="12" x2="12" y1="5" y2="19"></line>
+<line x1="5" x2="19" y1="12" y2="12"></line>
+</svg>
+</button>
+<button aria-label="Eliminar orden #41818" class="btn-header-action delete-action" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" fill="none" focusable="false" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15">
+<polyline points="3 6 5 6 21 6"></polyline>
+<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+</svg>
+</button>
+</div>
+</header>
+<div class="order-body">
+<!-- Estado y Marca -->
+<div class="order-status-banner">
+<div class="status-content-left">
+<svg aria-hidden="true" class="status-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+<span>ESTADO: PROCESOS FINALIZADOS — PENDIENTE DE CIERRE</span>
+</div>
+<div class="brand-emblem-badge">
+<span aria-hidden="true" class="brand-emblem-dot"></span>
+<span>Benelli</span>
+</div>
+</div>
+<!-- Metadatos de la orden -->
+
+<!-- Barra de Progreso 100% -->
+
+<details class="order-details"><summary class="btn-details-link">Ver detalles</summary><div class="order-meta-grid">
+<div class="meta-item">
+<svg aria-hidden="true" class="meta-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+</svg>
+<span>Mecánico: <strong class="meta-highlight">EDWIN OMAR LOPEZ SALGADO</strong></span>
+</div>
+<div class="meta-item">
+<svg aria-hidden="true" class="meta-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+<span>Días transcurridos: <strong class="meta-highlight tabular-nums">0</strong></span>
+</div>
+<div class="meta-item">
+<svg aria-hidden="true" class="meta-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect>
+<line x1="16" x2="16" y1="2" y2="6"></line>
+<line x1="8" x2="8" y1="2" y2="6"></line>
+<line x1="3" x2="21" y1="10" y2="10"></line>
+</svg>
+<span>Entrega: <strong class="meta-highlight">05/10/2026 16:19 · Hoy</strong></span>
+</div>
+
+</div><div class="order-progress-section">
+<div class="progress-header">
+<span class="tabular-nums">100%</span>
+</div>
+<div aria-label="Avance de la orden 41818" aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" class="progress-bar-track" role="progressbar">
+<div class="progress-bar-fill fill-100"></div>
+</div>
+</div></details></div>
+</article>
+<!-- ORDEN 2: FREEDOM SPITZER 250 2023 -->
+<article aria-label="Orden de trabajo 41817" class="order-card status-completed">
+<header class="order-header">
+<div class="order-id-group">
+<span class="order-badge-id tabular-nums">(#41817)</span>
+<span class="order-vehicle-name">M781783 FREEDOM SPITZER 250 2023</span>
+</div>
+<div class="order-header-actions">
+<button aria-label="Configurar orden #41817" class="btn-header-action" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" fill="none" focusable="false" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15">
+<circle cx="12" cy="12" r="3"></circle>
+<path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+</svg>
+</button>
+<button aria-label="Agregar elemento a orden #41817" class="btn-header-action" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" fill="none" focusable="false" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="15">
+<line x1="12" x2="12" y1="5" y2="19"></line>
+<line x1="5" x2="19" y1="12" y2="12"></line>
+</svg>
+</button>
+<button aria-label="Eliminar orden #41817" class="btn-header-action delete-action" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" fill="none" focusable="false" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15">
+<polyline points="3 6 5 6 21 6"></polyline>
+<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+</svg>
+</button>
+</div>
+</header>
+<div class="order-body">
+<!-- Estado y Marca -->
+<div class="order-status-banner">
+<div class="status-content-left">
+<svg aria-hidden="true" class="status-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+<span>ESTADO: PROCESOS FINALIZADOS — PENDIENTE DE CIERRE</span>
+</div>
+<div class="brand-emblem-badge">
+<span aria-hidden="true" class="brand-emblem-dot"></span>
+<span>Freedom</span>
+</div>
+</div>
+<!-- Metadatos de la orden -->
+
+<!-- Barra de Progreso 100% -->
+
+<details class="order-details"><summary class="btn-details-link">Ver detalles</summary><div class="order-meta-grid">
+<div class="meta-item">
+<svg aria-hidden="true" class="meta-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+</svg>
+<span>Mecánico: <strong class="meta-highlight">KEVIN ANTONIO ESCOTO ARGUERA</strong></span>
+</div>
+<div class="meta-item">
+<svg aria-hidden="true" class="meta-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+<span>Días transcurridos: <strong class="meta-highlight tabular-nums">0</strong></span>
+</div>
+<div class="meta-item">
+<svg aria-hidden="true" class="meta-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect>
+<line x1="16" x2="16" y1="2" y2="6"></line>
+<line x1="8" x2="8" y1="2" y2="6"></line>
+<line x1="3" x2="21" y1="10" y2="10"></line>
+</svg>
+<span>Entrega: <strong class="meta-highlight">05/10/2026 15:41 · Hoy</strong></span>
+</div>
+
+</div><div class="order-progress-section">
+<div class="progress-header">
+<span class="tabular-nums">100%</span>
+</div>
+<div aria-label="Avance de la orden 41817" aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" class="progress-bar-track" role="progressbar">
+<div class="progress-bar-fill fill-100"></div>
+</div>
+</div></details></div>
+</article>
+<!-- ORDEN 3: PULSAR AS 2016 -->
+<article aria-label="Orden de trabajo 41815" class="order-card status-pending">
+<header class="order-header">
+<div class="order-id-group">
+<span class="order-badge-id tabular-nums">(#41815)</span>
+<span class="order-vehicle-name">M382544 Pulsar AS 2016</span>
+</div>
+<div class="order-header-actions">
+<!-- Botón especial de Iniciar (Play) -->
+<button aria-label="Iniciar orden #41815" class="btn-header-action play-action" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" fill="currentColor" focusable="false" height="15" viewbox="0 0 24 24" width="15">
+<polygon points="5 3 19 12 5 21 5 3"></polygon>
+</svg>
+</button>
+<button aria-label="Configurar orden #41815" class="btn-header-action" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" fill="none" focusable="false" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15">
+<circle cx="12" cy="12" r="3"></circle>
+<path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+</svg>
+</button>
+<button aria-label="Agregar elemento a orden #41815" class="btn-header-action" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" fill="none" focusable="false" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="15">
+<line x1="12" x2="12" y1="5" y2="19"></line>
+<line x1="5" x2="19" y1="12" y2="12"></line>
+</svg>
+</button>
+<button aria-label="Eliminar orden #41815" class="btn-header-action delete-action" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" fill="none" focusable="false" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15">
+<polyline points="3 6 5 6 21 6"></polyline>
+<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+</svg>
+</button>
+</div>
+</header>
+<div class="order-body">
+<!-- Estado y Marca -->
+<div class="order-status-banner">
+<div class="status-content-left">
+<svg aria-hidden="true" class="status-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+<line x1="12" x2="12" y1="9" y2="13"></line>
+<line x1="12" x2="12.01" y1="17" y2="17"></line>
+</svg>
+<span>ORDEN DE TRABAJO SIN INICIAR</span>
+</div>
+<div class="brand-emblem-badge">
+<span aria-hidden="true" class="brand-emblem-dot"></span>
+<span>Pulsar</span>
+</div>
+</div>
+<!-- Metadatos de la orden -->
+
+<!-- Barra de Progreso 0% -->
+
+<details class="order-details"><summary class="btn-details-link">Ver detalles</summary><div class="order-meta-grid">
+<div class="meta-item">
+<svg aria-hidden="true" class="meta-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+</svg>
+<span>Mecánico: <strong class="meta-highlight">MELBIN ESTANLEY GUZMAN MENJIVAR</strong></span>
+</div>
+<div class="meta-item">
+<svg aria-hidden="true" class="meta-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+<span>Días transcurridos: <strong class="meta-highlight tabular-nums">0</strong></span>
+</div>
+<div class="meta-item">
+<svg aria-hidden="true" class="meta-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect>
+<line x1="16" x2="16" y1="2" y2="6"></line>
+<line x1="8" x2="8" y1="2" y2="6"></line>
+<line x1="3" x2="21" y1="10" y2="10"></line>
+</svg>
+<span>Estado inicial</span>
+</div>
+
+</div><div class="order-progress-section">
+<div class="progress-header">
+<span class="tabular-nums">0%</span>
+</div>
+<div aria-label="Avance de la orden 41815" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="progress-bar-track" role="progressbar">
+<div class="progress-bar-fill fill-0"></div>
+</div>
+</div></details></div>
+</article>
+<!-- ORDEN 4: KAWASAKI EX 300 NINJA 2014 (EN PAUSA) -->
+<article aria-label="Orden de trabajo 41721" class="order-card status-paused">
+<header class="order-header">
+<div class="order-id-group">
+<span class="order-badge-id tabular-nums">(#41721)</span>
+<span class="order-vehicle-name">M605126 KAWASAKI EX 300 NINJA 2014</span>
+</div>
+<div class="order-header-actions">
+<button aria-label="Configurar orden #41721" class="btn-header-action" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" fill="none" focusable="false" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15">
+<circle cx="12" cy="12" r="3"></circle>
+<path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+</svg>
+</button>
+<button aria-label="Agregar elemento a orden #41721" class="btn-header-action" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" fill="none" focusable="false" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="15">
+<line x1="12" x2="12" y1="5" y2="19"></line>
+<line x1="5" x2="19" y1="12" y2="12"></line>
+</svg>
+</button>
+<button aria-label="Eliminar orden #41721" class="btn-header-action delete-action" disabled="" title="Acción pendiente de integrar en este prototipo" type="button">
+<svg aria-hidden="true" fill="none" focusable="false" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15">
+<polyline points="3 6 5 6 21 6"></polyline>
+<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+</svg>
+</button>
+</div>
+</header>
+<div class="order-body">
+<!-- Estado y Marca -->
+<div class="order-status-banner">
+<div class="status-content-left">
+<svg aria-hidden="true" class="status-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<line x1="10" x2="10" y1="15" y2="9"></line>
+<line x1="14" x2="14" y1="15" y2="9"></line>
+</svg>
+<span>ORDEN DE TRABAJO EN PAUSA</span>
+</div>
+<div class="brand-emblem-badge">
+<span aria-hidden="true" class="brand-emblem-dot"></span>
+<span>Kawasaki</span>
+</div>
+</div>
+<!-- Detalle de Causa y Tiempo en Pausa -->
+<div class="pause-reason-box">
+<span class="pause-meta-title">Causa:</span>
+<span class="pause-meta-val">Búsqueda de Repuesto(s)</span>
+<span class="pause-meta-title">Tiempo en pausa:</span>
+<span class="pause-meta-val tabular-nums">3 días, 6 horas, 49 minutos</span>
+</div>
+<!-- Metadatos de la orden -->
+
+<!-- Barra de Progreso 0% -->
+
+<details class="order-details"><summary class="btn-details-link">Ver detalles</summary><div class="order-meta-grid">
+<div class="meta-item">
+<svg aria-hidden="true" class="meta-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+</svg>
+<span>Mecánico: <strong class="meta-highlight">JUAN ISAAC GARCIA SANTAMARIA</strong></span>
+</div>
+<div class="meta-item">
+<svg aria-hidden="true" class="meta-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+<span>Días transcurridos: <strong class="meta-highlight tabular-nums">3</strong></span>
+</div>
+<div class="meta-item">
+<svg aria-hidden="true" class="meta-icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect>
+<line x1="16" x2="16" y1="2" y2="6"></line>
+<line x1="8" x2="8" y1="2" y2="6"></line>
+<line x1="3" x2="21" y1="10" y2="10"></line>
+</svg>
+<span>En espera de refacción</span>
+</div>
+
+</div><div class="order-progress-section">
+<div class="progress-header">
+<span class="tabular-nums">0%</span>
+</div>
+<div aria-label="Avance de la orden 41721" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="progress-bar-track" role="progressbar">
+<div class="progress-bar-fill fill-0"></div>
+</div>
+</div></details></div>
+</article>
+</div>
+</section>
+<!-- ==================================================================
+             COLUMNA LATERAL COMPLEMENTARIA
+             - Resumen mensual de órdenes
+             - Actividad reciente del taller
+             ================================================================== -->
+<aside aria-label="Información complementaria del taller" class="sidebar-widget-column">
+<!-- Resumen de Órdenes del Mes (25 / Ilimitadas disponibles) -->
+<article class="monthly-summary-card">
+<div class="monthly-summary-header">
+<svg aria-hidden="true" fill="none" focusable="false" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18">
+<path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+</svg>
+<span>Capacidad Mensual</span>
+</div>
+<p class="stat-context">Órdenes de trabajo en el mes:</p>
+<div class="monthly-stats-row">
+<span class="stat-large-num tabular-nums">25</span>
+<span class="stat-context">/ Ilimitadas disponibles</span>
+</div>
+
+</article>
+<!-- Actividad Reciente del Taller (Inspirado en la referencia estética) -->
+<article class="recent-activity-card">
+<h3 class="recent-activity-title">Resumen de las órdenes mostradas</h3>
+<ul class="timeline-list">
+<li class="timeline-item">
+<span aria-hidden="true" class="timeline-dot green"></span>
+<p class="timeline-text">Benelli RKR 180 (#41818): procesos finalizados, pendiente de cierre.</p>
+
+</li>
+<li class="timeline-item">
+<span aria-hidden="true" class="timeline-dot cyan"></span>
+<p class="timeline-text">Freedom Spitzer 250 (#41817): procesos finalizados, pendiente de cierre.</p>
+
+</li>
+<li class="timeline-item">
+<span aria-hidden="true" class="timeline-dot amber"></span>
+<p class="timeline-text">Pulsar AS 2016 (#41815): orden de trabajo sin iniciar.</p>
+
+</li>
+<li class="timeline-item">
+<span aria-hidden="true" class="timeline-dot"></span>
+<p class="timeline-text">Kawasaki EX 300 Ninja 2014 (#41721): en pausa por búsqueda de repuestos.</p>
+
+</li>
+</ul>
+</article>
+</aside>
+</div>
+</main>
+</div>
+<!-- Botón flotante accesible de búsqueda por placa -->
+<a aria-label="Búsqueda rápida por placa" class="floating-search-btn" href="#buscar-placa">
+<svg aria-hidden="true" fill="none" focusable="false" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="18">
+<circle cx="11" cy="11" r="8"></circle>
+<line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+</svg>
+<span>Buscar placa</span>
+</a>
+</body>
+</html>

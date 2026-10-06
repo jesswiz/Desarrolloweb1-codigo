@@ -1,0 +1,78 @@
+Crea una nueva versión de la página de inicio «Tu taller hoy» de TalleresT, siguiendo las instrucciones que detallo a continuación. Te adjunto tres imágenes: las primeras dos muestran el contenido original y la tercera muestra la referencia estética que quiero seguir.
+
+1. Temática y finalidad del sitio
+
+El sitio es un sistema de gestión para un taller dedicado a la reparación y mantenimiento de motocicletas y a la venta de repuestos. La página de inicio debe funcionar como un panel administrativo que permita consultar rápidamente la situación del taller, revisar las órdenes de trabajo y acceder a las demás secciones del sistema.
+
+Debe transmitir organización, claridad y profesionalismo, y facilitar que el personal identifique las tareas pendientes y el avance de las reparaciones.
+
+2. Contenido que debes conservar
+
+Utiliza las primeras dos imágenes como referencia del contenido original. Conserva la información y las opciones existentes, aunque puedes reorganizar su presentación:
+
+- La marca y el logotipo de TalleresT.
+- La información del usuario y del taller.
+- Las opciones de navegación: Recepción de vehículos, Tu taller en vivo, Clientes, Empleados, Vehículos, Notificaciones, Finanzas del taller, Ventas, Facturas, Inventario, Historial y Marketplace.
+- El título de la sección y las opciones «Tu taller en vivo» y «Administrar».
+- El buscador por placa.
+- El resumen de órdenes de trabajo del mes: 25 e ilimitadas disponibles.
+- Los cinco indicadores: 10 vehículos en taller, 3 en proceso, 3 en pausa, 2 en tiempo extra y 2 en cola.
+- Las órdenes de trabajo visibles, conservando sus identificadores, placas, modelos, años, mecánicos asignados y demás datos que aparecen en las imágenes.
+- Los estados de las órdenes, incluyendo procesos finalizados pendientes de cierre, órdenes sin iniciar y órdenes en pausa.
+- La causa y el tiempo de pausa cuando correspondan.
+- Los días transcurridos, la fecha de entrega y el porcentaje de avance cuando estén disponibles.
+- Las barras de progreso y las acciones de cada orden, como ver detalles, iniciar, configurar, agregar y eliminar.
+
+No sustituyas las motocicletas por automóviles ni cambies los datos originales por los datos de ejemplo de la tercera imagen. Si algún texto no se distingue, indícalo y evita inventarlo. No elimines información para simplificar el diseño.
+
+3. Identidad visual y referencia estética
+
+La tercera imagen es la referencia principal para la apariencia. Quiero un diseño moderno, ordenado y minimalista, con estas características:
+
+- Barra lateral oscura, en negro o azul muy oscuro, con el logotipo en la parte superior, navegación organizada y perfil del usuario en la parte inferior.
+- Opción activa claramente identificada mediante un fondo morado y texto blanco.
+- Fondo del área principal en gris muy claro.
+- Tarjetas blancas con bordes finos, esquinas redondeadas y sombras suaves.
+- Tipografía sans serif legible, con títulos destacados, cifras grandes y textos secundarios en gris.
+- Márgenes amplios, separación uniforme entre secciones y suficiente espacio interior en las tarjetas.
+- Morado como color de acento para botones, enlaces, selección y barras de progreso.
+- Un bloque de bienvenida similar al de la referencia, con un degradado suave de turquesa a morado. El texto debe corresponder al usuario y a los indicadores originales.
+- Estados presentados como etiquetas compactas con texto e iconos. Utiliza colores suaves y coherentes para distinguirlos, sin depender únicamente del color.
+- Iconos consistentes, de tamaño moderado y relacionados con motocicletas, reparaciones, repuestos y administración.
+
+Mantén la marca y la coherencia visual con las demás páginas del sistema, especialmente Finanzas e Inventario: utiliza la misma paleta, tipografía, estilo de navegación, botones y tarjetas. La modernización debe conservar una identidad reconocible de TalleresT.
+
+Toma de la tercera imagen la organización y la estética, pero conserva el contenido de las primeras dos. No copies los datos ficticios de la tercera imagen ni reduzcas el menú a sus tres opciones.
+
+4. Uso obligatorio de CSS Grid
+
+La distribución principal de toda la página debe construirse con CSS Grid. Este requisito es obligatorio y no se cumple utilizando Grid únicamente dentro de las tarjetas o de una galería.
+
+Implementa un contenedor general con `display: grid` que distribuya la barra lateral y el área principal. Utiliza columnas y, cuando resulte conveniente, `grid-template-areas` para definir claramente esas regiones.
+
+Dentro del área principal, utiliza también Grid para organizar el encabezado, el bloque de bienvenida, los indicadores y la sección de órdenes de trabajo. El diseño debe evidenciar que Grid controla la estructura general del panel.
+
+Puedes utilizar Flexbox dentro de componentes específicos, por ejemplo, para alinear iconos con textos, organizar botones o distribuir los elementos internos de una tarjeta. Flexbox no debe reemplazar a Grid en la distribución principal.
+
+5. Organización y diseño adaptable
+
+En escritorio, muestra la barra lateral a la izquierda y el contenido principal a la derecha. Distribuye los cinco indicadores en una fila cuando el espacio lo permita y coloca las órdenes debajo, con una jerarquía clara.
+
+Utiliza media queries para adaptar el diseño a tabletas y teléfonos. Reduce progresivamente las columnas de los indicadores y reorganiza la navegación para que el contenido siga siendo accesible. Evita superposiciones, textos cortados y desplazamiento horizontal innecesario.
+
+6. Requisitos del código y entrega
+
+Genera el código HTML y CSS por separado:
+
+- `index.html`: estructura y contenido de la página.
+- `css/estilo.css`: todos los estilos.
+
+Enlaza correctamente la hoja de estilos desde el HTML. No incluyas estilos dentro del HTML ni uses atributos `style`.
+
+Utiliza HTML semántico, clases con nombres comprensibles y variables CSS en `:root` para los colores principales. Incluye textos alternativos para las imágenes y estados visibles al enfocar enlaces y botones con el teclado.
+
+Trabaja con HTML y CSS, sin frameworks ni JavaScript. Presenta los controles como elementos de interfaz y no afirmes que ejecutan operaciones reales si requieren programación adicional.
+
+Entrega ambos archivos completos en dos bloques de código separados, listos para copiar y pegar. Indica las rutas de las imágenes necesarias y agrega comentarios breves en el CSS para identificar el Grid de la distribución principal.
+
+Al finalizar, explica brevemente dónde utilizaste CSS Grid para organizar la página y cómo conservaste el contenido original y la identidad visual.

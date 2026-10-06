@@ -35,6 +35,9 @@
                     <a href="#guia-2">Guía 2</a>
                 </li>
 
+                <!-- NUEVO: GUÍA 3 -->
+                <li><a href="#guia-3">Guía 3</a></li>
+
                 <li>
                     <a href="#reto-ia">Reto IA</a>
                 </li>
@@ -523,6 +526,67 @@
 
 </section>
 
+
+        <!-- NUEVO: GUÍA 3. Rutas según la estructura de carpetas del proyecto. -->
+        <section class="guia3-seccion" id="guia-3" aria-labelledby="titulo-guia-3">
+            <article class="guia">
+                <div class="guia-encabezado">
+                    <span class="guia-numero">03</span>
+                    <div>
+                        <p class="etiqueta">DISTRIBUCIÓN Y POSICIONAMIENTO</p>
+                        <h2 id="titulo-guia-3">Guía 3</h2>
+                    </div>
+                </div>
+                <p class="guia-descripcion">Ejemplos de Flexbox y posicionamiento, práctica de z-index y rediseño de una página utilizando CSS Grid.</p>
+                <div class="ejercicios">
+                    <a class="ejercicio" href="20255765_Guia3/ejemplo1/index.html">
+                        <span>01</span><div><h3>Ejemplo 1</h3><p>Maravillas del mundo: distribución de tarjetas y posicionamiento de elementos.</p></div><strong aria-hidden="true">→</strong>
+                    </a>
+                    <a class="ejercicio" href="20255765_Guia3/ejemplo2/index.html">
+                        <span>02</span><div><h3>Ejemplo 2</h3><p>Compañía Miau: menú lateral con transiciones y control mediante un checkbox.</p></div><strong aria-hidden="true">→</strong>
+                    </a>
+                    <a class="ejercicio" href="20255765_Guia3/ejercicio/ejercicio.html">
+                        <span>03</span><div><h3>Ejercicio</h3><p>Escalera de cartas utilizando posicionamiento y z-index.</p></div><strong aria-hidden="true">→</strong>
+                    </a>
+                </div>
+            </article>
+
+            <article class="reto-ia-compacto guia3-reto" id="reto-ia-guia-3" aria-labelledby="titulo-reto-guia-3">
+                <div class="reto-ia-informacion">
+                    <span class="guia-numero">IA</span>
+                    <div>
+                        <p class="etiqueta">INTELIGENCIA ARTIFICIAL Y CSS GRID</p>
+                        <h2 id="titulo-reto-guia-3">Reto IA Guía 3</h2>
+                        <p>Nueva versión de «Tu taller hoy» con CSS Grid en la distribución principal. Consulta la instrucción, las correcciones realizadas y la página final.</p>
+                    </div>
+                </div>
+                <div class="reto-ia-enlaces">
+                    <a class="reto-enlace" href="20255765_Guia3/Reto_IA_Guia3/Prompt_editado.txt" target="_blank" rel="noopener noreferrer">
+                        <span>01</span><div><strong>Prompt elaborado</strong><small>Instrucción utilizada para generar la página</small></div><b aria-hidden="true">↗</b>
+                    </a>
+                    <a class="reto-enlace" href="20255765_Guia3/Reto_IA_Guia3/listadeCambios.txt" target="_blank" rel="noopener noreferrer">
+                        <span>02</span><div><strong>Lista de cambios</strong><small>Correcciones realizadas al resultado original</small></div><b aria-hidden="true">↗</b>
+                    </a>
+                    <a class="reto-enlace" href="20255765_Guia3/Reto_IA_Guia3/Codigo_corregido/index.html">
+                        <span>03</span><div><strong>Código corregido</strong><small>Ver la página HTML final de Tu taller hoy</small></div><b aria-hidden="true">→</b>
+                    </a>
+                </div>
+                <div class="guia3-video">
+                    <div>
+                        <p class="etiqueta">PROCEDIMIENTO Y RESULTADOS</p>
+                        <h3>Video explicativo</h3>
+                        <p>Presentación del prompt, uso de CSS Grid y correcciones realizadas a la página.</p>
+                    </div>
+                    <!-- VIDEO GUÍA 3: pega tu enlace de YouTube entre las comillas de data-video-url. -->
+                    <!-- Acepta https://youtu.be/ID o https://www.youtube.com/watch?v=ID -->
+                    <div class="guia3-video-marco" id="video-guia-3" data-video-url="">
+                        <p class="guia3-video-pendiente">Video explicativo pendiente de agregar.</p>
+                        <iframe hidden title="Video explicativo del Reto IA Guía 3" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </article>
+        </section>
+
     </main>
 
     <footer>
@@ -550,6 +614,34 @@
         </p>
 
     </footer>
+
+
+    <!-- Configuración exclusiva del video de Guía 3; no modifica el video de Guía 2. -->
+    <script>
+        (() => {
+            const marco = document.getElementById("video-guia-3");
+            const enlace = marco.dataset.videoUrl.trim();
+            if (!enlace) return;
+            try {
+                const url = new URL(enlace);
+                if (url.protocol !== "https:" && url.protocol !== "http:") return;
+                const host = url.hostname.toLowerCase();
+                let id = "";
+                if (host === "youtu.be") {
+                    id = url.pathname.split("/")[1];
+                } else if (["youtube.com", "www.youtube.com", "m.youtube.com", "www.youtube-nocookie.com"].includes(host)) {
+                    id = url.searchParams.get("v") || (/^\/(embed|shorts)\//.test(url.pathname) ? url.pathname.split("/")[2] : "");
+                }
+                if (!/^[A-Za-z0-9_-]{11}$/.test(id || "")) return;
+                const iframe = marco.querySelector("iframe");
+                iframe.src = "https://www.youtube.com/embed/" + id;
+                iframe.hidden = false;
+                marco.querySelector("p").hidden = true;
+            } catch {
+                // Mantiene el aviso si el enlace todavía no es válido.
+            }
+        })();
+    </script>
 
 </body>
 

@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TalleresT - Tu taller hoy | Gestión de Motocicletas y Repuestos</title>
+  <meta name="description" content="Panel de administración y gestión para taller de reparación de motocicletas y venta de repuestos TalleresT.">
+  <meta property="og:title" content="TalleresT - Tu taller hoy">
+  <meta property="og:description" content="Panel administrativo para consultar órdenes de trabajo, capacidad e indicadores de TalleresT.">
+  <meta property="og:type" content="website">
+
+  <!-- Enlace a la hoja de estilos externa -->
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <!-- Contenedor General con CSS Grid (sidebar y main) -->
+  <div class="app-container">
+
+    <!-- ======================================================================
+         BARRA LATERAL DE NAVEGACIÓN (SIDEBAR)
+         ====================================================================== -->
+    <aside class="sidebar" aria-label="Navegación principal del sistema">
+      
+      <!-- Logotipo de la marca TalleresT -->
+      <div class="sidebar-header">
+        <a href="#inicio" class="brand-logo" title="TalleresT - Inicio">
+          <div class="brand-icon-wrapper" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              <path d="m14 10-4 4"/>
+            </svg>
+          </div>
+          <span class="brand-text">Talleres<span>T</span></span>
+        </a>
+      </div>
+
+      <!-- Menú de opciones de navegación del sistema -->
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Operación</div>
+        <ul class="nav-list">
+          
+          <!-- Recepción de vehículos -->
+          <li>
+            <a href="#recepcion" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                <path d="M9 14h6"/>
+                <path d="M9 18h6"/>
+                <path d="M9 10h1"/>
+              </svg>
+              <span class="nav-label">Recepción de vehículos</span>
+            </a>
+          </li>
+
+          <!-- Tu taller en vivo (Opción Activa destacada con fondo morado) -->
+          <li>
+            <a href="#taller-vivo" class="nav-link active" aria-current="page">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+              </svg>
+              <span class="nav-label">Tu taller en vivo</span>
+              <span class="badge-nuevo">Nuevo</span>
+            </a>
+          </li>
+
+          <!-- Clientes -->
+          <li>
+            <a href="#clientes" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              <span class="nav-label">Clientes</span>
+            </a>
+          </li>
+
+          <!-- Empleados -->
+          <li>
+            <a href="#empleados" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M4 21v-2a4 4 0 0 1 3-3.87"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              <span class="nav-label">Empleados</span>
+            </a>
+          </li>
+
+          <!-- Vehículos -->
+          <li>
+            <a href="#vehiculos" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <!-- Icono de Motocicleta -->
+                <circle cx="5.5" cy="17.5" r="3.5"/>
+                <circle cx="18.5" cy="17.5" r="3.5"/>
+                <path d="M15 6h-3l-2.5 5.5H5.5"/>
+                <path d="M9 17.5 12 11h4l2.5 6.5"/>
+              </svg>
+              <span class="nav-label">Vehículos</span>
+            </a>
+          </li>
+
+          <!-- Notificaciones con badge -->
+          <li>
+            <a href="#notificaciones" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+              </svg>
+              <span class="nav-label">Notificaciones</span>
+              <span class="badge-counter" title="999+ notificaciones">999+</span>
+              <svg class="nav-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-section-title">Administración y Finanzas</div>
+        <ul class="nav-list">
+          
+          <!-- Finanzas del taller -->
+          <li>
+            <a href="#finanzas" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              <span class="nav-label">Finanzas del taller</span>
+            </a>
+          </li>
+
+          <!-- Ventas -->
+          <li>
+            <a href="#ventas" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+                <path d="M3 6h18"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+              </svg>
+              <span class="nav-label">Ventas</span>
+            </a>
+          </li>
+
+          <!-- Facturas -->
+          <li>
+            <a href="#facturas" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
+              </svg>
+              <span class="nav-label">Facturas</span>
+            </a>
+          </li>
+
+          <!-- Inventario -->
+          <li>
+            <a href="#inventario" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+                <path d="m3.3 7 8.7 5 8.7-5"/>
+                <path d="M12 22V12"/>
+              </svg>
+              <span class="nav-label">Inventario</span>
+            </a>
+          </li>
+
+          <!-- Historial -->
+          <li>
+            <a href="#historial" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                <path d="M3 3v5h5"/>
+                <path d="M12 7v5l4 2"/>
+              </svg>
+              <span class="nav-label">Historial</span>
+              <svg class="nav-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </a>
+          </li>
+
+          <!-- Marketplace -->
+          <li>
+            <a href="#marketplace" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              <span class="nav-label">Marketplace</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Perfil del usuario en la parte inferior del sidebar -->
+      <div class="sidebar-footer">
+        <div class="user-profile-card">
+          <div class="user-avatar-wrapper" title="Avatar de usuario">
+            <span>DA</span>
+            <span class="user-status-dot" title="En línea"></span>
+          </div>
+          <div class="user-info">
+            <p class="user-name">DASTech Admin</p>
+            <p class="user-role-badge">DASTech · Merliot</p>
+          </div>
+          <div class="user-quick-actions">
+            <button type="button" class="btn-icon-subtle" title="Permisos y llaves de acceso" aria-label="Permisos">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m21 2-2 2m-6 6 2 2m-4-2 2-2m-8 8a5 5 0 1 1 7-7l8-8 2 2-8 8a5 5 0 0 1-7 7Z"/>
+              </svg>
+            </button>
+            <button type="button" class="btn-icon-subtle" title="Cerrar sesión" aria-label="Cerrar sesión">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                <polyline points="16 17 21 12 16 7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+
+    <!-- ======================================================================
+         ÁREA PRINCIPAL DEL PANEL (MAIN VIEWPORT)
+         Organizada verticalmente mediante CSS Grid (topbar, welcome, kpis, workspace)
+         ====================================================================== -->
+    <main class="main-viewport">
+      
+      <!-- --------------------------------------------------------------------
+           1. ENCABEZADO SUPERIOR (topbar)
+           -------------------------------------------------------------------- -->
+      <header class="topbar">
+        <div class="topbar-titles">
+          <div class="topbar-header-row">
+            <h1 class="page-main-title">Tu taller hoy</h1>
+            
+            <!-- Pestañas de vista («Tu taller en vivo v2» con punto morado y «Administrar») -->
+            <div class="view-tabs-container" role="tablist" aria-label="Modo de visualización de órdenes">
+              <button type="button" class="view-tab active" role="tab" aria-selected="true">
+                <span class="view-dot-indicator" aria-hidden="true"></span>
+                <span>Tu taller en vivo v2</span>
+              </button>
+              <button type="button" class="view-tab" role="tab" aria-selected="false">
+                <span>Administrar</span>
+              </button>
+            </div>
+          </div>
+          <span class="current-date">Lunes, 5 de octubre de 2026</span>
+        </div>
+
+        <!-- Buscador por placa y perfil rápido superior -->
+        <div class="topbar-actions">
+          <form class="search-box-wrapper" role="search" onsubmit="return false;">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input 
+              type="search" 
+              name="placa" 
+              class="search-input" 
+              placeholder="Buscar por placa o cliente..." 
+              aria-label="Buscar orden de trabajo por placa o cliente"
+            >
+          </form>
+
+          <div class="topbar-user-badge">
+            <span class="avatar-mini" aria-hidden="true">DA</span>
+            <span>DASTech Admin</span>
+          </div>
+        </div>
+      </header>
+
+
+      <!-- --------------------------------------------------------------------
+           2. BLOQUE DE BIENVENIDA (welcome-area)
+           Degradado moderno turquesa a morado con métricas clave del taller
+           -------------------------------------------------------------------- -->
+      <section class="welcome-banner" aria-labelledby="welcome-heading">
+        <div class="welcome-content">
+          <h2 id="welcome-heading" class="welcome-title">
+            ¡Hola, DASTech Admin! <span aria-hidden="true">👋</span>
+          </h2>
+          <p class="welcome-subtitle">
+            Hoy tienes <strong>10 vehículos en el taller</strong>, <strong>3 en proceso</strong> de reparación y <strong>2 órdenes en cola</strong> por asignar.
+          </p>
+        </div>
+        <div class="welcome-actions">
+          <button type="button" class="btn-primary-white">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            <span>+ Nueva orden</span>
+          </button>
+        </div>
+      </section>
+
+
+      <!-- --------------------------------------------------------------------
+           3. CINCO INDICADORES DEL TALLER (kpi-indicators) - CSS GRID
+           1. 10 Vehículos en taller (moto)
+           2. 3 En proceso (llave)
+           3. 3 En pausa (pausa)
+           4. 2 En tiempo extra (reloj tiempo extra)
+           5. 2 En cola (reloj cola)
+           -------------------------------------------------------------------- -->
+      <section class="kpi-indicators-grid" aria-label="Indicadores del estado del taller">
+        
+        <!-- Indicador 1: 10 Vehículos en taller -->
+        <article class="kpi-card cyan">
+          <div class="kpi-card-top">
+            <div class="kpi-icon-bubble" aria-hidden="true">
+              <!-- Icono Motocicleta -->
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="5.5" cy="17.5" r="3.5"/>
+                <circle cx="18.5" cy="17.5" r="3.5"/>
+                <path d="M15 6h-3l-2.5 5.5H5.5"/>
+                <path d="M9 17.5 12 11h4l2.5 6.5"/>
+              </svg>
+            </div>
+            <span class="kpi-value tabular-nums">10</span>
+          </div>
+          <span class="kpi-label">Vehículos en taller</span>
+        </article>
+
+        <!-- Indicador 2: 3 En proceso -->
+        <article class="kpi-card emerald">
+          <div class="kpi-card-top">
+            <div class="kpi-icon-bubble" aria-hidden="true">
+              <!-- Icono Llave Inglesa -->
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+              </svg>
+            </div>
+            <span class="kpi-value tabular-nums">3</span>
+          </div>
+          <span class="kpi-label">En proceso</span>
+        </article>
+
+        <!-- Indicador 3: 3 En pausa -->
+        <article class="kpi-card rose">
+          <div class="kpi-card-top">
+            <div class="kpi-icon-bubble" aria-hidden="true">
+              <!-- Icono Pausa -->
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="6" y="4" width="4" height="16" rx="1"/>
+                <rect x="14" y="4" width="4" height="16" rx="1"/>
+              </svg>
+            </div>
+            <span class="kpi-value tabular-nums">3</span>
+          </div>
+          <span class="kpi-label">En pausa</span>
+        </article>
+
+        <!-- Indicador 4: 2 En tiempo extra -->
+        <article class="kpi-card amber">
+          <div class="kpi-card-top">
+            <div class="kpi-icon-bubble" aria-hidden="true">
+              <!-- Icono Tiempo Extra / Reloj con retorno -->
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                <path d="M3 3v5h5"/>
+                <polyline points="12 7 12 12 15 15"/>
+              </svg>
+            </div>
+            <span class="kpi-value tabular-nums">2</span>
+          </div>
+          <span class="kpi-label">En tiempo extra</span>
+        </article>
+
+        <!-- Indicador 5: 2 En cola -->
+        <article class="kpi-card slate">
+          <div class="kpi-card-top">
+            <div class="kpi-icon-bubble" aria-hidden="true">
+              <!-- Icono Reloj en Espera -->
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <span class="kpi-value tabular-nums">2</span>
+          </div>
+          <span class="kpi-label">En cola</span>
+        </article>
+
+      </section>
+
+
+      <!-- --------------------------------------------------------------------
+           4. DISTRIBUCIÓN PRINCIPAL DE TRABAJO (main-workspace) - CSS GRID
+           - Columna izquierda: Órdenes de trabajo activas (conservando datos originales)
+           - Columna derecha: Resumen del mes y Actividad reciente
+           -------------------------------------------------------------------- -->
+      <div class="main-workspace-grid">
+
+        <!-- ==================================================================
+             COLUMNA DE ÓRDENES DE TRABAJO
+             ================================================================== -->
+        <section class="work-orders-column" aria-labelledby="orders-list-heading">
+          
+          <div class="section-header-bar">
+            <div class="section-heading-group">
+              <h2 id="orders-list-heading" class="section-title">Órdenes de trabajo activas</h2>
+              <span class="section-count-tag">4 órdenes prioritarias en pantalla</span>
+            </div>
+          </div>
+
+          <div class="work-orders-list">
+
+            <!-- ORDEN 1: BENELLI RKR 180 2020 -->
+            <article class="order-card status-completed">
+              <header class="order-header">
+                <div class="order-id-group">
+                  <span class="order-badge-id tabular-nums">(#41818)</span>
+                  <span class="order-vehicle-name">M495159 BENELLI RKR 180 2020</span>
+                </div>
+                <div class="order-header-actions">
+                  <button type="button" class="btn-header-action" title="Configurar orden" aria-label="Configurar orden #41818">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="3"/>
+                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn-header-action" title="Agregar tarea o repuesto" aria-label="Agregar elemento a orden #41818">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19"/>
+                      <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn-header-action delete-action" title="Eliminar orden" aria-label="Eliminar orden #41818">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="3 6 5 6 21 6"/>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                    </svg>
+                  </button>
+                </div>
+              </header>
+
+              <div class="order-body">
+                <!-- Estado y Marca -->
+                <div class="order-status-banner">
+                  <div class="status-content-left">
+                    <svg class="status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    <span>ESTADO: PROCESOS FINALIZADOS — PENDIENTE DE CIERRE</span>
+                  </div>
+                  <div class="brand-emblem-badge">
+                    <span class="brand-emblem-dot" aria-hidden="true"></span>
+                    <span>Benelli</span>
+                  </div>
+                </div>
+
+                <!-- Metadatos de la orden -->
+                <div class="order-meta-grid">
+                  <div class="meta-item">
+                    <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                    <span>Mecánico: <strong class="meta-highlight">EDWIN OMAR LOPEZ SALGADO</strong></span>
+                  </div>
+                  <div class="meta-item">
+                    <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"/>
+                      <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <span>Días transcurridos: <strong class="meta-highlight tabular-nums">0</strong></span>
+                  </div>
+                  <div class="meta-item">
+                    <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                      <line x1="16" y1="2" x2="16" y2="6"/>
+                      <line x1="8" y1="2" x2="8" y2="6"/>
+                      <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    <span>Entrega: <strong class="meta-highlight">05/10/2026 16:19 · Hoy</strong></span>
+                  </div>
+                  <div class="meta-action-wrapper">
+                    <a href="#detalles-41818" class="btn-details-link">
+                      <span>Ver detalles</span>
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Barra de Progreso 100% -->
+                <div class="order-progress-section">
+                  <div class="progress-header">
+                    <span class="tabular-nums">100%</span>
+                  </div>
+                  <div class="progress-bar-track" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar-fill fill-100"></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+
+            <!-- ORDEN 2: FREEDOM SPITZER 250 2023 -->
+            <article class="order-card status-completed">
+              <header class="order-header">
+                <div class="order-id-group">
+                  <span class="order-badge-id tabular-nums">(#41817)</span>
+                  <span class="order-vehicle-name">M781783 FREEDOM SPITZER 250 2023</span>
+                </div>
+                <div class="order-header-actions">
+                  <button type="button" class="btn-header-action" title="Configurar orden" aria-label="Configurar orden #41817">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="3"/>
+                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn-header-action" title="Agregar tarea o repuesto" aria-label="Agregar elemento a orden #41817">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19"/>
+                      <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn-header-action delete-action" title="Eliminar orden" aria-label="Eliminar orden #41817">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="3 6 5 6 21 6"/>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                    </svg>
+                  </button>
+                </div>
+              </header>
+
+              <div class="order-body">
+                <!-- Estado y Marca -->
+                <div class="order-status-banner">
+                  <div class="status-content-left">
+                    <svg class="status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    <span>ESTADO: PROCESOS FINALIZADOS — PENDIENTE DE CIERRE</span>
+                  </div>
+                  <div class="brand-emblem-badge">
+                    <span class="brand-emblem-dot" aria-hidden="true"></span>
+                    <span>Freedom</span>
+                  </div>
+                </div>
+
+                <!-- Metadatos de la orden -->
+                <div class="order-meta-grid">
+                  <div class="meta-item">
+                    <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                    <span>Mecánico: <strong class="meta-highlight">KEVIN ANTONIO ESCOTO ARGUERA</strong></span>
+                  </div>
+                  <div class="meta-item">
+                    <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"/>
+                      <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <span>Días transcurridos: <strong class="meta-highlight tabular-nums">0</strong></span>
+                  </div>
+                  <div class="meta-item">
+                    <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                      <line x1="16" y1="2" x2="16" y2="6"/>
+                      <line x1="8" y1="2" x2="8" y2="6"/>
+                      <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    <span>Entrega: <strong class="meta-highlight">05/10/2026 15:41 · Hoy</strong></span>
+                  </div>
+                  <div class="meta-action-wrapper">
+                    <a href="#detalles-41817" class="btn-details-link">
+                      <span>Ver detalles</span>
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Barra de Progreso 100% -->
+                <div class="order-progress-section">
+                  <div class="progress-header">
+                    <span class="tabular-nums">100%</span>
+                  </div>
+                  <div class="progress-bar-track" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar-fill fill-100"></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+
+            <!-- ORDEN 3: PULSAR AS 2016 -->
+            <article class="order-card status-pending">
+              <header class="order-header">
+                <div class="order-id-group">
+                  <span class="order-badge-id tabular-nums">(#41815)</span>
+                  <span class="order-vehicle-name">M382544 Pulsar AS 2016</span>
+                </div>
+                <div class="order-header-actions">
+                  <!-- Botón especial de Iniciar (Play) -->
+                  <button type="button" class="btn-header-action play-action" title="Iniciar orden de trabajo" aria-label="Iniciar orden #41815">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+                      <polygon points="5 3 19 12 5 21 5 3"/>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn-header-action" title="Configurar orden" aria-label="Configurar orden #41815">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="3"/>
+                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn-header-action" title="Agregar tarea o repuesto" aria-label="Agregar elemento a orden #41815">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19"/>
+                      <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn-header-action delete-action" title="Eliminar orden" aria-label="Eliminar orden #41815">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="3 6 5 6 21 6"/>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                    </svg>
+                  </button>
+                </div>
+              </header>
+
+              <div class="order-body">
+                <!-- Estado y Marca -->
+                <div class="order-status-banner">
+                  <div class="status-content-left">
+                    <svg class="status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                      <line x1="12" y1="9" x2="12" y2="13"/>
+                      <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    <span>ORDEN DE TRABAJO SIN INICIAR</span>
+                  </div>
+                  <div class="brand-emblem-badge">
+                    <span class="brand-emblem-dot" aria-hidden="true"></span>
+                    <span>Pulsar</span>
+                  </div>
+                </div>
+
+                <!-- Metadatos de la orden -->
+                <div class="order-meta-grid">
+                  <div class="meta-item">
+                    <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                    <span>Mecánico: <strong class="meta-highlight">MELBIN ESTANLEY GUZMAN MENJIVAR</strong></span>
+                  </div>
+                  <div class="meta-item">
+                    <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"/>
+                      <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <span>Días transcurridos: <strong class="meta-highlight tabular-nums">0</strong></span>
+                  </div>
+                  <div class="meta-item">
+                    <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                      <line x1="16" y1="2" x2="16" y2="6"/>
+                      <line x1="8" y1="2" x2="8" y2="6"/>
+                      <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    <span>Estado inicial</span>
+                  </div>
+                  <div class="meta-action-wrapper">
+                    <a href="#detalles-41815" class="btn-details-link">
+                      <span>Ver detalles</span>
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Barra de Progreso 0% -->
+                <div class="order-progress-section">
+                  <div class="progress-header">
+                    <span class="tabular-nums">0%</span>
+                  </div>
+                  <div class="progress-bar-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar-fill fill-0"></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+
+            <!-- ORDEN 4: KAWASAKI EX 300 NINJA 2014 (EN PAUSA) -->
+            <article class="order-card status-paused">
+              <header class="order-header">
+                <div class="order-id-group">
+                  <span class="order-badge-id tabular-nums">(#41721)</span>
+                  <span class="order-vehicle-name">M605126 KAWASAKI EX 300 NINJA 2014</span>
+                </div>
+                <div class="order-header-actions">
+                  <button type="button" class="btn-header-action" title="Configurar orden" aria-label="Configurar orden #41721">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="3"/>
+                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn-header-action" title="Agregar tarea o repuesto" aria-label="Agregar elemento a orden #41721">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19"/>
+                      <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn-header-action delete-action" title="Eliminar orden" aria-label="Eliminar orden #41721">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="3 6 5 6 21 6"/>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                    </svg>
+                  </button>
+                </div>
+              </header>
+
+              <div class="order-body">
+                <!-- Estado y Marca -->
+                <div class="order-status-banner">
+                  <div class="status-content-left">
+                    <svg class="status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"/>
+                      <line x1="10" y1="15" x2="10" y2="9"/>
+                      <line x1="14" y1="15" x2="14" y2="9"/>
+                    </svg>
+                    <span>ORDEN DE TRABAJO EN PAUSA</span>
+                  </div>
+                  <div class="brand-emblem-badge">
+                    <span class="brand-emblem-dot" aria-hidden="true"></span>
+                    <span>Kawasaki</span>
+                  </div>
+                </div>
+
+                <!-- Detalle de Causa y Tiempo en Pausa -->
+                <div class="pause-reason-box">
+                  <span class="pause-meta-title">Causa:</span>
+                  <span class="pause-meta-val">Búsqueda de Repuesto(s)</span>
+                  <span class="pause-meta-title">Tiempo en pausa:</span>
+                  <span class="pause-meta-val tabular-nums">3 días, 6 horas, 49 minutos</span>
+                </div>
+
+                <!-- Metadatos de la orden -->
+                <div class="order-meta-grid">
+                  <div class="meta-item">
+                    <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                    <span>Mecánico: <strong class="meta-highlight">JUAN ISAAC GARCIA SANTAMARIA</strong></span>
+                  </div>
+                  <div class="meta-item">
+                    <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"/>
+                      <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <span>Días transcurridos: <strong class="meta-highlight tabular-nums">3</strong></span>
+                  </div>
+                  <div class="meta-item">
+                    <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                      <line x1="16" y1="2" x2="16" y2="6"/>
+                      <line x1="8" y1="2" x2="8" y2="6"/>
+                      <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    <span>En espera de refacción</span>
+                  </div>
+                  <div class="meta-action-wrapper">
+                    <a href="#detalles-41721" class="btn-details-link">
+                      <span>Ver detalles</span>
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Barra de Progreso 0% -->
+                <div class="order-progress-section">
+                  <div class="progress-header">
+                    <span class="tabular-nums">0%</span>
+                  </div>
+                  <div class="progress-bar-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar-fill fill-0"></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+
+        <!-- ==================================================================
+             COLUMNA LATERAL COMPLEMENTARIA
+             - Resumen mensual de órdenes
+             - Actividad reciente del taller
+             ================================================================== -->
+        <aside class="sidebar-widget-column" aria-label="Información complementaria del taller">
+          
+          <!-- Resumen de Órdenes del Mes (25 / Ilimitadas disponibles) -->
+          <article class="monthly-summary-card">
+            <div class="monthly-summary-header">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              <span>Capacidad Mensual</span>
+            </div>
+            
+            <p class="stat-context">Órdenes de trabajo en el mes:</p>
+            <div class="monthly-stats-row">
+              <span class="stat-large-num tabular-nums">25</span>
+              <span class="stat-context">/ Ilimitadas disponibles</span>
+            </div>
+
+            <div class="capacity-badge">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>Plan Taller Pro Activo</span>
+            </div>
+          </article>
+
+
+          <!-- Actividad Reciente del Taller (Inspirado en la referencia estética) -->
+          <article class="recent-activity-card">
+            <h3 class="recent-activity-title">Actividad reciente</h3>
+            
+            <ul class="timeline-list">
+              <li class="timeline-item">
+                <span class="timeline-dot green" aria-hidden="true"></span>
+                <p class="timeline-text">
+                  <strong>Edwin Omar López</strong> finalizó los procesos mecánicos de la <em>Benelli RKR 180</em> (#41818).
+                </p>
+                <span class="timeline-time">Hace 12 min · Pendiente de entrega</span>
+              </li>
+
+              <li class="timeline-item">
+                <span class="timeline-dot cyan" aria-hidden="true"></span>
+                <p class="timeline-text">
+                  <strong>Kevin Antonio Escoto</strong> completó el servicio de mantenimiento de la <em>Freedom Spitzer 250</em> (#41817).
+                </p>
+                <span class="timeline-time">Hace 48 min · Inspección aprobada</span>
+              </li>
+
+              <li class="timeline-item">
+                <span class="timeline-dot amber" aria-hidden="true"></span>
+                <p class="timeline-text">
+                  Se asignó la orden (#41815) de la <em>Pulsar AS 2016</em> al mecánico <strong>Melbin Guzman</strong>.
+                </p>
+                <span class="timeline-time">Hoy, 10:15 a. m. · Lista para iniciar</span>
+              </li>
+
+              <li class="timeline-item">
+                <span class="timeline-dot" aria-hidden="true"></span>
+                <p class="timeline-text">
+                  Solicitud de cotización de repuestos ingresada para <em>Kawasaki Ninja 300</em> (#41721).
+                </p>
+                <span class="timeline-time">Ayer, 4:30 p. m. · Proveedor importador</span>
+              </li>
+            </ul>
+          </article>
+
+        </aside>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Botón flotante accesible de búsqueda por placa -->
+  <button type="button" class="floating-search-btn" aria-label="Búsqueda rápida por placa">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="11" cy="11" r="8"/>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <span>Buscar placa</span>
+  </button>
+
+</body>
+</html>
