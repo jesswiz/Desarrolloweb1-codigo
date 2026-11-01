@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de estudiante</title>
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <main class="container py-5">
+        <div class="card shadow-sm mx-auto" style="max-width: 750px;">
+            <div class="card-body p-4">
+                <h1 class="h3 mb-3">Ficha de estudiante</h1>
+
+                <a href="formulario.html" class="btn btn-outline-secondary mb-4">
+                    Volver al expediente médico
+                </a>
+
+                <form id="formEstudiante" novalidate>
+                    <div class="mb-3">
+                        <label for="carnet" class="form-label">Carnet</label>
+                        <input type="text" id="carnet" class="form-control"
+                            placeholder="AB001" maxlength="5">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">
+                            Nombre completo
+                        </label>
+                        <input type="text" id="nombre" class="form-control"
+                            placeholder="Ana María López">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dui" class="form-label">DUI</label>
+                        <input type="text" id="dui" class="form-control"
+                            placeholder="12345678-9" maxlength="10">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nit" class="form-label">NIT</label>
+                        <input type="text" id="nit" class="form-control"
+                            placeholder="1234-123456-123-4" maxlength="17">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="fecha" class="form-label">
+                            Fecha de nacimiento (día/mes/año)
+                        </label>
+                        <input type="text" id="fecha" class="form-control"
+                            placeholder="31/08/2005" maxlength="10">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="correo" class="form-label">
+                            Correo electrónico
+                        </label>
+                        <input type="email" id="correo" class="form-control"
+                            placeholder="estudiante@correo.com">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="edad" class="form-label">Edad</label>
+                        <input type="text" id="edad" class="form-control"
+                            placeholder="21" inputmode="numeric">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Validar ficha
+                    </button>
+
+                    <button type="reset" class="btn btn-outline-secondary">
+                        Limpiar
+                    </button>
+                </form>
+
+                <div id="resultadoValidacion" class="mt-4"
+                    aria-live="polite"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/estudiante.js"></script>
+</body>
+</html>
