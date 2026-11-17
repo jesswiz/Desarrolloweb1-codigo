@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineBusca | Películas y series</title>
+    <link rel="stylesheet" href="../css/cinebusca.css">
+    <script src="../js/cinebusca.js" defer></script>
+</head>
+<body>
+    <main class="contenedor">
+
+        <h1>CineBusca</h1>
+        <p>Busca una película o serie por título.</p>
+
+        <form id="form-busqueda">
+    <label for="titulo-busqueda">Título de la película o serie</label>
+    <div class="barra-busqueda">
+        <input id="titulo-busqueda" type="search"
+            placeholder="Ej. Dark" required>
+        <button id="boton-buscar" type="submit">Buscar</button>
+    </div>
+    </form>
+
+        <p id="estado-busqueda" role="status"></p>
+        <section id="resultados" class="resultados"
+            aria-label="Resultados de la búsqueda"></section>
+    </main>
+
+    <dialog id="ventana-detalle" aria-labelledby="titulo-detalle">
+        <form method="dialog" class="cerrar">
+            <button type="submit">Cerrar</button>
+        </form>
+        <h2 id="titulo-detalle">Ficha del título</h2>
+        <p id="estado-detalle" role="status"></p>
+        <div id="contenido-detalle"></div>
+    </dialog>
+</body>
+</html>
